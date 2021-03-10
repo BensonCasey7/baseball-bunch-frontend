@@ -1,5 +1,6 @@
 {
   "name": "baseball-bunch-frontend",
+  "homepage": "https://cs411baseball.web.illinois.edu/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
