@@ -5,7 +5,6 @@ function Home() {
   return (
     <div>
       <h1>The Baseball Bunch</h1>
-      <Link to="/routing-test">Routing Test</Link>
     </div>
   );
 }
