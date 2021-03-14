@@ -5,42 +5,15 @@ function Home() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    let mockedData = [
-      {
-        "COL 1": "franchID",
-        "COL 2": "franchName",
-        "COL 3": "active",
-        "COL 4": "NAassoc",
-      },
-      {
-        "COL 1": "ALT",
-        "COL 2": "Altoona Mountain City",
-        "COL 3": "N",
-        "COL 4": "",
-      },
-      {
-        "COL 1": "ANA",
-        "COL 2": "Los Angeles Angels of Anaheim",
-        "COL 3": "Y",
-        "COL 4": "",
-      },
-    ];
-
-    let apiResponse = mockedData;
-    setLoaded(true);
-
-    // Once CORS is resolved, uncomment below
-
-    // let apiResponse = await fetch("https://cs411baseball.web.illinois.edu/api/content")
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     setLoaded(true);
-    //     return result;
-    //   })
-    //   .catch((error) => error);
-
-    apiResponse.shift();
-    setData(apiResponse);
+    fetch("https://cs411baseball.web.illinois.edu/api/content")
+      .then((res) => res.json())
+      .then((result) => {
+        result.shift();
+        setData(result);
+        setLoaded(true);
+        return result;
+      })
+      .catch((error) => error);
   }, []);
 
   return (
