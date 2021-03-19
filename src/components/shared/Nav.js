@@ -1,11 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import SearchForm from "./SearchForm";
 
 function Nav() {
   return (
     <div className={"page-wrapper page-wrapper--navbar"}>
       <div className={"page-wrapper__content"}>
         <div className={"navbar"}>
-          <h1 className={"navbar__title"}>The Baseball Bunch</h1>
+          <Link to="/" className={"navbar__title"}>
+            The Baseball Bunch
+          </Link>
+          <SearchForm />
         </div>
       </div>
     </div>

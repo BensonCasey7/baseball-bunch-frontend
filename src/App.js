@@ -1,5 +1,6 @@
 import Nav from "./components/shared/Nav";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./assets/stylesheets/App.scss";
@@ -12,6 +13,7 @@ function App() {
         <div className={"page-wrapper__content"}>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/search" children={<Search />} />
             <Route component={NotFound} />
           </Switch>
         </div>

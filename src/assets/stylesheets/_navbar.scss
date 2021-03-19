@@ -1,8 +1,41 @@
 .navbar {
   display: flex;
-}
-
-.navbar__title {
   padding: $global-padding / 2 $global-padding;
-  margin: 0;
+  height: 46px;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:visited {
+      color: $black;
+    }
+
+    @include breakpoint(large up) {
+      font-size: 32px;
+    }
+  }
+
+  &__search-form {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__search-input {
+    height: 26px;
+    width: 180px;
+    margin: 0 $global-margin;
+
+    @include breakpoint(large up) {
+      width: 280px;
+    }
+  }
+
+  &__search-submit {
+    margin: 0 $global-margin;
+  }
 }
