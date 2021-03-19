@@ -1,8 +1,11 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Nav from "./components/shared/Nav";
+import Stage3 from "./components/shared/Stage3";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./assets/stylesheets/App.scss";
 
 function App() {
@@ -16,6 +19,7 @@ function App() {
             <Route path="/search" children={<Search />} />
             <Route component={NotFound} />
           </Switch>
+          <Stage3 />
         </div>
       </div>
     </Router>

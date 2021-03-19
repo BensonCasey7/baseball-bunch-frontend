@@ -6,6 +6,7 @@ function Search() {
 
   return (
     <div className={"page"}>
+      <h1>Search</h1>
       <h3>
         Search results for "<code>{query}"</code>
       </h3>
