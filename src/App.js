@@ -5,6 +5,7 @@ import Nav from "./components/shared/Nav";
 import Stage3 from "./components/shared/Stage3";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Player from "./pages/Player";
 import NotFound from "./pages/NotFound";
 import "./assets/stylesheets/App.scss";
 
@@ -17,6 +18,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/search" children={<Search />} />
+            <Route path="/players/:id" children={<Player />} />
             <Route component={NotFound} />
           </Switch>
           <Stage3 />

@@ -1,0 +1,28 @@
+$table-border: $black solid 1px;
+
+.table {
+  border-collapse: collapse;
+  &__row {
+    border-top: $table-border;
+
+    &:nth-child(even) {
+      background-color: $light-gray;
+    }
+
+    &:last-child {
+      border-bottom: $table-border;
+    }
+
+    &--head {
+      background-color: $gray;
+    }
+  }
+
+  &__data {
+    border-right: $table-border;
+
+    &:first-child {
+      border-left: $table-border;
+    }
+  }
+}

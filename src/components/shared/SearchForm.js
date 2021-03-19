@@ -5,7 +5,7 @@ function SearchForm() {
   let query = new URLSearchParams(useLocation().search).get("name");
   const history = useHistory();
 
-  const [searchTerm, setSearchTerm] = useState(query);
+  const [searchTerm, setSearchTerm] = useState(query || "");
 
   const handleSubmit = (event) => {
     event.preventDefault();
