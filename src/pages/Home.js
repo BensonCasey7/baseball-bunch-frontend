@@ -17,8 +17,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>The Baseball Bunch</h1>
+    <div className={"page"}>
       {loaded && (
         <table>
           <thead>

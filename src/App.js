@@ -1,15 +1,21 @@
+import Nav from "./components/shared/Nav";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./assets/stylesheets/App.scss";
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route component={NotFound} />
-      </Switch>
+      <Nav />
+      <div className={"page-wrapper"}>
+        <div className={"page-wrapper__content"}>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </div>
     </Router>
   );
 }

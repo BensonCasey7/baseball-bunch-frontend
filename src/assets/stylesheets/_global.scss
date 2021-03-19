@@ -1,0 +1,37 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+
+  &__content {
+    width: 100%;
+
+    @include breakpoint(medium) {
+      width: map-get($breakpoints, "medium");
+    }
+
+    @include breakpoint(large) {
+      width: map-get($breakpoints, "large");
+    }
+
+    @include breakpoint(xlarge) {
+      width: map-get($breakpoints, "xlarge");
+    }
+
+    @include breakpoint(xxlarge) {
+      width: map-get($breakpoints, "xxlarge");
+    }
+  }
+
+  &--navbar {
+    min-height: 0;
+  }
+}
+
+.page {
+  padding: $global-padding;
+}
+
+table, tr, th, td {
+  border: 1px solid black;
+}
