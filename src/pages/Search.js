@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import Loading from "../components/shared/Loading";
+import sleep from "../utils/sleep";
+
 function Search() {
   const query = new URLSearchParams(useLocation().search).get("name");
 
@@ -8,8 +11,10 @@ function Search() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setSearchResults(mockedSearchResults);
-    setLoaded(true);
+    sleep(1000).then(() => {
+      setSearchResults(mockedSearchResults);
+      setLoaded(true);
+    });
   }, [setSearchResults]);
 
   return (
@@ -18,7 +23,7 @@ function Search() {
       <h3>
         Theoretical search results for "<code>{query}"</code>
       </h3>
-      {loaded && (
+      {loaded ? (
         <div>
           {searchResults.players.map((player) => {
             return (
@@ -28,6 +33,8 @@ function Search() {
             );
           })}
         </div>
+      ) : (
+        <Loading />
       )}
     </div>
   );

@@ -2,7 +2,8 @@
 @include foundation-xy-grid-classes;
 
 @import "./_variables.scss";
-
 @import "./_global.scss";
+
+@import "./_loading.scss";
 @import "./_navbar.scss";
-@import "./table.scss";
+@import "./_table.scss";

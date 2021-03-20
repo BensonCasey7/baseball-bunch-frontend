@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import Loading from "./Loading";
+
 function Stage3() {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +21,7 @@ function Stage3() {
   return (
     <div className={"page"}>
       <h2>Stage 3 Demo</h2>
-      {loaded && (
+      {loaded ? (
         <table className={"table"}>
           <thead>
             <tr className={"table__row table__row--head"}>
@@ -42,6 +44,8 @@ function Stage3() {
             })}
           </tbody>
         </table>
+      ) : (
+        <Loading />
       )}
     </div>
   );
