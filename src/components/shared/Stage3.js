@@ -22,28 +22,30 @@ function Stage3() {
     <div className={"page"}>
       <h2>Stage 3 Demo</h2>
       {loaded ? (
-        <table className={"table"}>
-          <thead>
-            <tr className={"table__row table__row--head"}>
-              <th className={"table__data"}>fracnhId</th>
-              <th className={"table__data"}>franchName</th>
-              <th className={"table__data"}>active</th>
-              <th className={"table__data"}>NAassoc</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((recipe) => {
-              return (
-                <tr key={recipe["COL 1"]} className={"table__row"}>
-                  <td className={"table__data"}>{recipe["COL 1"]}</td>
-                  <td className={"table__data"}>{recipe["COL 2"]}</td>
-                  <td className={"table__data"}>{recipe["COL 3"]}</td>
-                  <td className={"table__data"}>{recipe["COL 4"]}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className={"table-container"}>
+          <table className={"table"}>
+            <thead>
+              <tr className={"table__row table__row--head"}>
+                <th className={"table__data"}>fracnhId</th>
+                <th className={"table__data"}>franchName</th>
+                <th className={"table__data"}>active</th>
+                <th className={"table__data"}>NAassoc</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((recipe) => {
+                return (
+                  <tr key={recipe["COL 1"]} className={"table__row"}>
+                    <td className={"table__data"}>{recipe["COL 1"]}</td>
+                    <td className={"table__data"}>{recipe["COL 2"]}</td>
+                    <td className={"table__data"}>{recipe["COL 3"]}</td>
+                    <td className={"table__data"}>{recipe["COL 4"]}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <Loading />
       )}

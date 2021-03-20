@@ -2,6 +2,7 @@ $table-border: $black solid 1px;
 
 .table {
   border-collapse: collapse;
+
   &__row {
     border-top: $table-border;
 
@@ -24,5 +25,13 @@ $table-border: $black solid 1px;
     &:first-child {
       border-left: $table-border;
     }
+  }
+}
+
+.table-container {
+  overflow: scroll;
+
+  @include breakpoint(medium up) {
+    overflow: unset;
   }
 }
