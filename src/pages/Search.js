@@ -40,6 +40,10 @@ function mockedSearchResults() {
         name: "Kris Bryant",
         id: "bryankr01",
       },
+      {
+        name: "Jacob deGrom",
+        id: "degroja01",
+      },
     ],
   };
 }
