@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./components/shared/Nav";
@@ -6,17 +6,27 @@ import Stage3 from "./components/shared/Stage3";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Player from "./pages/Player";
+import SignIn from "./pages/SignIn";
 import NotFound from "./pages/NotFound";
 import "./assets/stylesheets/App.scss";
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
+
   return (
     <Router>
-      <Nav />
+      <Nav signedIn={signedIn} setSignedIn={setSignedIn} />
       <div className={"page-wrapper"}>
         <div className={"page-wrapper__content"}>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route
+              path="/signin"
+              exact
+              children={
+                <SignIn signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
+            />
             <Route path="/search" children={<Search />} />
             <Route path="/players/:id" children={<Player />} />
             <Route component={NotFound} />

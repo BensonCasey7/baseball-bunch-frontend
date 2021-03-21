@@ -3,6 +3,11 @@
   padding: $global-padding / 2 $global-padding;
   height: 46px;
   align-items: center;
+  justify-content: space-between;
+
+  &__group {
+    display: flex;
+  }
 
   &__title {
     margin: 0;
