@@ -7,21 +7,15 @@
 
   &__group {
     display: flex;
+    align-items: center;
   }
 
   &__title {
     margin: 0;
-    font-size: 20px;
+    font-size: 40px;
     text-decoration: none;
-    font-weight: 600;
-
-    &:visited {
-      color: $black;
-    }
-
-    @include breakpoint(large up) {
-      font-size: 32px;
-    }
+    font-weight: $fw-black;
+    color: $midnight-blue;
   }
 
   &__search-form {
@@ -31,16 +25,32 @@
   }
 
   &__search-input {
-    height: 26px;
-    width: 180px;
+    height: 30px;
+    width: 120px;
+    font-size: 16px;
     margin: 0 $global-margin;
 
+    @include breakpoint(medium) {
+      width: 200px;
+    }
     @include breakpoint(large up) {
-      width: 280px;
+      width: 400px;
     }
   }
 
   &__search-submit {
     margin: 0 $global-margin;
+  }
+
+  &--mobile {
+    @include breakpoint(large up) {
+      display: none;
+    }
+  }
+
+  &--desktop {
+    @include breakpoint(medium down) {
+      display: none;
+    }
   }
 }

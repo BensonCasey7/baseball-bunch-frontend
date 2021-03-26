@@ -45,11 +45,13 @@ function SignIn(props) {
           onChange={handlePasswordInput}
         />
       </div>
-      Not yet functional.
+      <div>Not yet functional.</div>
       {authenticating ? (
         <Loading />
       ) : (
-        <button onClick={simulateSignIn}>Simulate Sign In</button>
+        <button onClick={simulateSignIn} className={"button"}>
+          Simulate Sign In
+        </button>
       )}
     </div>
   );

@@ -1,0 +1,29 @@
+.button {
+  background-color: $white;
+  border: $midnight-blue 2px solid;
+  color: $midnight-blue;
+  font-weight: $fw-bold;
+  font-size: 16px;
+  padding: $global-padding / 4 $global-padding / 2;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &--blue {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+  }
+
+  &--midnight-blue {
+    background-color: $midnight-blue;
+    border-color: $midnight-blue;
+    color: $white;
+  }
+
+  &--red {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+}

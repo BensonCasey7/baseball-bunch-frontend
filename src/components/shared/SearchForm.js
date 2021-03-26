@@ -25,7 +25,7 @@ function SearchForm() {
         placeholder={"Enter a player"}
         onChange={handleInput}
       />
-      <input type="submit" value="Search" />
+      <input type="submit" value="Search" className={"button"} />
     </form>
   );
 }
