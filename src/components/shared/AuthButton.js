@@ -4,7 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 function AuthButton(props) {
   const history = useHistory();
 
-  function simulateSignOut() {
+  function signOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     props.setSignedIn(false);
     history.push("/");
   }
@@ -12,10 +14,7 @@ function AuthButton(props) {
   return (
     <div>
       {props.signedIn ? (
-        <button
-          onClick={simulateSignOut}
-          className={"button button--midnight-blue"}
-        >
+        <button onClick={signOut} className={"button button--midnight-blue"}>
           Sign Out
         </button>
       ) : (

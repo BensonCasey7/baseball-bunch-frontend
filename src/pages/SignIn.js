@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Loading from "../components/shared/Loading";
-import sleep from "../utils/sleep";
 
 function SignIn(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authenticating, setAuthenticating] = useState(false);
+  const [badLogin, setBadLogin] = useState(props.authError ? true : false);
+  const [authError, setAuthError] = useState(props.authError);
   const history = useHistory();
 
   const handleUsernameInput = (event) => {
@@ -18,17 +19,44 @@ function SignIn(props) {
     setPassword(event.target.value);
   };
 
-  const simulateSignIn = () => {
+  const authenticateUser = async (event) => {
+    event.preventDefault();
     setAuthenticating(true);
-    sleep(1000).then(() => {
-      props.setSignedIn(true);
-      history.push("/");
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${window.btoa(`${username}:${password}`)}`,
+      },
+    };
+    fetch(
+      "https://cs411baseball.web.illinois.edu/api/token",
+      requestOptions
+    ).then(async (response) => {
+      if (response.status === 200) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+        props.setSignedIn(true);
+        history.push("/");
+      } else if (response.status === 401) {
+        // Wrong username/password
+        setBadLogin(true);
+        setAuthError("Wrong username or password");
+        setAuthenticating(false);
+      } else {
+        // Server Error
+        setBadLogin(true);
+        setAuthError("Something went wrong. Try again later");
+        setAuthenticating(false);
+      }
     });
   };
 
   return (
     <div className={"page"}>
       <h1>Sign In</h1>
+      {badLogin ? <div>{authError}</div> : <div />}
+      <div>Username</div>
       <div>
         <input
           type={"text"}
@@ -37,6 +65,7 @@ function SignIn(props) {
           onChange={handleUsernameInput}
         />
       </div>
+      <div>Password</div>
       <div>
         <input
           type={"text"}
@@ -45,12 +74,15 @@ function SignIn(props) {
           onChange={handlePasswordInput}
         />
       </div>
+      <div>
+        Don't have an account? <Link to={"/signup"}>Sign Up</Link>
+      </div>
       <div>Not yet functional.</div>
       {authenticating ? (
         <Loading />
       ) : (
-        <button onClick={simulateSignIn} className={"button"}>
-          Simulate Sign In
+        <button onClick={authenticateUser} className={"button"}>
+          Sign In
         </button>
       )}
     </div>

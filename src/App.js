@@ -7,17 +7,26 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Player from "./pages/Player";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Restricted from "./pages/Restricted";
 import NotFound from "./pages/NotFound";
 import "./assets/stylesheets/App.scss";
 
 function App() {
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
 
   return (
     <Router>
       <Nav signedIn={signedIn} setSignedIn={setSignedIn} />
       <div className={"page-wrapper"}>
         <div className={"page-wrapper__content"}>
+          {signedIn ? (
+            <div className={"page"}>
+              {`Hello, ${localStorage.getItem("username")}`}
+            </div>
+          ) : (
+            ""
+          )}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route
@@ -26,6 +35,18 @@ function App() {
               children={
                 <SignIn signedIn={signedIn} setSignedIn={setSignedIn} />
               }
+            />
+            <Route
+              path="/signup"
+              exact
+              children={
+                <SignUp signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
+            />
+            <Route
+              path="/restricted"
+              exact
+              children={<Restricted signedIn={signedIn} />}
             />
             <Route path="/search" children={<Search />} />
             <Route path="/players/:id" children={<Player />} />
