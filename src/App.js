@@ -9,6 +9,7 @@ import Player from "./pages/Player";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Restricted from "./pages/Restricted";
+import FantasyTeam from "./pages/FantasyTeam";
 import NotFound from "./pages/NotFound";
 import "./assets/stylesheets/App.scss";
 
@@ -20,13 +21,6 @@ function App() {
       <Nav signedIn={signedIn} setSignedIn={setSignedIn} />
       <div className={"page-wrapper"}>
         <div className={"page-wrapper__content"}>
-          {signedIn ? (
-            <div className={"page"}>
-              {`Hello, ${localStorage.getItem("username")}`}
-            </div>
-          ) : (
-            ""
-          )}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route
@@ -47,6 +41,11 @@ function App() {
               path="/restricted"
               exact
               children={<Restricted signedIn={signedIn} />}
+            />
+            <Route
+              path="/my-team"
+              exact
+              children={<FantasyTeam signedIn={signedIn} />}
             />
             <Route path="/search" children={<Search />} />
             <Route path="/players/:id" children={<Player />} />

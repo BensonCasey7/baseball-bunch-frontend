@@ -19,6 +19,7 @@ function mockedHitterData() {
     bats: "R",
     throws: "R",
     type: "hitter",
+    position: "3B",
     seasons: [
       {
         year: "2018",
@@ -81,6 +82,7 @@ function mockedPitcherData() {
     bats: "L",
     throws: "R",
     type: "pitcher",
+    position: "P",
     seasons: [
       {
         year: "2018",

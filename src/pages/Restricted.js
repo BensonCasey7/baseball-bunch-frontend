@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import Loading from "../components/shared/Loading";
+import ForceAuthentication from "../utils/ForceAuthentication";
 
 function Restricted(props) {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
-    if (!props.signedIn) {
-      history.push("/signin");
-      return;
-    }
-
     if (loaded) {
       return;
     }
@@ -38,6 +32,7 @@ function Restricted(props) {
 
   return (
     <div className={"page"}>
+      <ForceAuthentication signedIn={props.signedIn} />
       <h1>Restricted Page</h1>
       <p>
         If you aren't logged in, you would have been redirected to the signin

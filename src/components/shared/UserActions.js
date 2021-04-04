@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFillCaretDownFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import AuthButton from "./AuthButton";
 
@@ -13,6 +14,7 @@ function UserActions(props) {
             <BsFillCaretDownFill />
           </div>
           <div className={"navbar__dropdown"}>
+            <Link to="/my-team">My Fantasy Team</Link>
             <AuthButton
               signedIn={props.signedIn}
               setSignedIn={props.setSignedIn}

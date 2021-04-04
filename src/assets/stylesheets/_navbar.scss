@@ -61,7 +61,6 @@
 
       .navbar__dropdown {
         display: flex;
-        justify-content: center;
       }
     }
   }
@@ -74,6 +73,13 @@
     right: 0;
     top: 70px;
     border: 1px $gray solid;
+    align-items: center;
+    flex-direction: column;
+
+    a {
+      font-size: 14px;
+      margin-bottom: $global-margin;
+    }
   }
 
   &--mobile {
