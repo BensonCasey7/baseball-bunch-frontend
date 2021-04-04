@@ -9,6 +9,11 @@
   text-decoration: none;
   cursor: pointer;
 
+  &:hover {
+    color: $white;
+    background-color: $midnight-blue;
+  }
+
   &--blue {
     background-color: $blue;
     border-color: $blue;
@@ -19,11 +24,21 @@
     background-color: $midnight-blue;
     border-color: $midnight-blue;
     color: $white;
+
+    &:hover {
+      background-color: $dark-blue;
+      border-color: $dark-blue;
+    }
   }
 
   &--red {
     background-color: $red;
     border-color: $red;
     color: $white;
+  }
+
+  &--understated {
+    font-size: 14px;
+    padding: $global-padding / 8 $global-padding / 4;
   }
 }

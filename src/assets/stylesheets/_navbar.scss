@@ -1,13 +1,14 @@
 .navbar {
   display: flex;
-  padding: $global-padding / 2 $global-padding;
-  height: 46px;
+  padding: 0 $global-padding;
+  height: 70px;
   align-items: center;
   justify-content: space-between;
 
   &__group {
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   &__title {
@@ -34,12 +35,45 @@
       width: 200px;
     }
     @include breakpoint(large up) {
-      width: 400px;
+      width: 380px;
     }
   }
 
   &__search-submit {
     margin: 0 $global-margin;
+  }
+
+  &__user {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: $fw-semi-bold;
+  }
+
+  &__user-actions {
+    position: relative;
+    height: 100%;
+    padding: $global-padding / 2 $global-padding;
+
+    &:hover {
+      background-color: $light-gray;
+
+      .navbar__dropdown {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    width: 150px;
+    padding: $global-padding / 2;
+    right: 0;
+    top: 70px;
+    border: 1px $gray solid;
   }
 
   &--mobile {

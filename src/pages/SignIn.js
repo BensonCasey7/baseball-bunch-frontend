@@ -54,37 +54,37 @@ function SignIn(props) {
 
   return (
     <div className={"page"}>
-      <h1>Sign In</h1>
-      {badLogin ? <div>{authError}</div> : <div />}
-      <div>Username</div>
-      <div>
-        <input
-          type={"text"}
-          value={username}
-          placeholder={"Username"}
-          onChange={handleUsernameInput}
-        />
-      </div>
-      <div>Password</div>
-      <div>
-        <input
-          type={"text"}
-          value={"*".repeat(password.length)}
-          placeholder={"Password"}
-          onChange={handlePasswordInput}
-        />
-      </div>
-      <div>
-        Don't have an account? <Link to={"/signup"}>Sign Up</Link>
-      </div>
-      <div>Not yet functional.</div>
-      {authenticating ? (
-        <Loading />
-      ) : (
-        <button onClick={authenticateUser} className={"button"}>
-          Sign In
-        </button>
-      )}
+      <form onSubmit={authenticateUser}>
+        <h1>Sign In</h1>
+        {badLogin ? <div className={"alert--error"}>{authError}</div> : <div />}
+        <div>Username</div>
+        <div>
+          <input
+            type={"text"}
+            value={username}
+            placeholder={"Username"}
+            onChange={handleUsernameInput}
+          />
+        </div>
+        <div>Password</div>
+        <div>
+          <input
+            type={"text"}
+            value={"*".repeat(password.length)}
+            placeholder={"Password"}
+            onChange={handlePasswordInput}
+          />
+        </div>
+        <div>
+          Don't have an account? <Link to={"/signup"}>Sign Up</Link>
+        </div>
+        <div>Not yet functional.</div>
+        {authenticating ? (
+          <Loading />
+        ) : (
+          <input type={"submit"} value={"Sign In"} className={"button"} />
+        )}
+      </form>
     </div>
   );
 }

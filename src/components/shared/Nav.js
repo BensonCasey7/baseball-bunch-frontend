@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import SearchForm from "./SearchForm";
 import AuthButton from "./AuthButton";
+import UserActions from "./UserActions";
 
 function Nav(props) {
   return (
@@ -32,7 +33,7 @@ function Nav(props) {
             <SearchForm />
           </div>
           <div className={"navbar__group"}>
-            <AuthButton
+            <UserActions
               signedIn={props.signedIn}
               setSignedIn={props.setSignedIn}
             />

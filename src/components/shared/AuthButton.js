@@ -11,14 +11,16 @@ function AuthButton(props) {
     history.push("/");
   }
 
+  const css = `button button--midnight-blue ${props.css}`;
+
   return (
     <div>
       {props.signedIn ? (
-        <button onClick={signOut} className={"button button--midnight-blue"}>
+        <button onClick={signOut} className={css}>
           Sign Out
         </button>
       ) : (
-        <Link to="/signin" className={"button button--midnight-blue"}>
+        <Link to="/signin" className={css}>
           Sign In
         </Link>
       )}
