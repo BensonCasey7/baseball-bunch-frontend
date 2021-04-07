@@ -1,0 +1,39 @@
+.footer {
+  color: $white;
+  padding: $global-padding;
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(medium up) {
+    flex-direction: row;
+
+    .footer__section {
+      margin-right: $global-margin * 4;
+      margin-bottom: 0;
+    }
+  }
+
+  &__section {
+    margin-bottom: $global-margin;
+  }
+
+  &__header {
+    font-weight: $fw-black;
+    margin-bottom: $global-margin / 4;
+  }
+
+  &__detail {
+    font-weight: $fw-semi-bold;
+    font-size: 12px;
+    margin-bottom: $global-margin / 4;
+
+    &--link {
+      color: $white;
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

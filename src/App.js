@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./components/shared/Nav";
+import Footer from "./components/shared/Footer";
 import Stage3 from "./components/shared/Stage3";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
@@ -58,6 +59,7 @@ function App() {
           <Stage3 />
         </div>
       </div>
+      <Footer />
     </Router>
   );
 }

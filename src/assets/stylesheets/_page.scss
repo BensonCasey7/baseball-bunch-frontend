@@ -2,7 +2,7 @@
   background-color: $light-gray;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 80vh;
 
   @include breakpoint(medium up) {
     padding: 0 $global-padding /2;
@@ -33,6 +33,12 @@
     background-color: $white;
     border-bottom: gray 2px solid;
     min-height: 0;
+  }
+
+  &--footer {
+    background-color: $dark-blue;
+    min-height: 0;
+    justify-content: left;
   }
 }
 
