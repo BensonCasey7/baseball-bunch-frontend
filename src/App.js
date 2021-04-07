@@ -40,12 +40,16 @@ function App() {
             <Route
               path="/restricted"
               exact
-              children={<Restricted signedIn={signedIn} />}
+              children={
+                <Restricted signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
             />
             <Route
               path="/my-team"
               exact
-              children={<FantasyTeam signedIn={signedIn} />}
+              children={
+                <FantasyTeam signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
             />
             <Route path="/search" children={<Search />} />
             <Route path="/players/:id" children={<Player />} />

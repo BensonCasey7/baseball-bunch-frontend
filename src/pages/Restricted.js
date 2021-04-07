@@ -8,10 +8,6 @@ function Restricted(props) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (loaded) {
-      return;
-    }
-
     const requestOptions = {
       method: "GET",
       headers: {
@@ -26,13 +22,20 @@ function Restricted(props) {
         const data = await response.json();
         setData(data);
         setLoaded(true);
+      } else if (response.status === 401) {
+        const data = await response.json();
+        setData(data);
+        setLoaded(true);
       }
     });
-  });
+  }, [setData]);
 
   return (
     <div className={"page"}>
-      <ForceAuthentication signedIn={props.signedIn} />
+      <ForceAuthentication
+        signedIn={props.signedIn}
+        setSignedIn={props.setSignedIn}
+      />
       <h1>Restricted Page</h1>
       <p>
         If you aren't logged in, you would have been redirected to the signin

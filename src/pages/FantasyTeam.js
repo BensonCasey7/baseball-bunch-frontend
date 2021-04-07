@@ -21,7 +21,10 @@ function FantasyTeam(props) {
 
   return (
     <div className={"page"}>
-      <ForceAuthentication signedIn={props.signedIn} />
+      <ForceAuthentication
+        signedIn={props.signedIn}
+        setSignedIn={props.setSignedIn}
+      />
       <h1>My Team</h1>
       {loaded ? (
         <div>

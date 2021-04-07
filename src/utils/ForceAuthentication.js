@@ -7,8 +7,24 @@ function ForceAuthentication(props) {
   useEffect(() => {
     if (!props.signedIn) {
       history.push("/signin");
+      return;
     }
-  });
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    fetch(
+      "https://cs411baseball.web.illinois.edu/api/players/bryankr01",
+      requestOptions
+    ).then(async (response) => {
+      if (response.status === 401) {
+        props.setSignedIn(false);
+        history.push("/signin");
+      }
+    });
+  }, [history, props]);
 
   return <></>;
 }
