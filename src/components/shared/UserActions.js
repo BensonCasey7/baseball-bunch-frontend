@@ -14,7 +14,7 @@ function UserActions(props) {
             <BsFillCaretDownFill />
           </div>
           <div className={"navbar__dropdown"}>
-            <Link to="/my-team">My Fantasy Team</Link>
+            <Link to="/teams">My Fantasy Teams</Link>
             <AuthButton
               signedIn={props.signedIn}
               setSignedIn={props.setSignedIn}

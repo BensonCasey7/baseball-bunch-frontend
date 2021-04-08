@@ -111,7 +111,6 @@ function SignUp(props) {
       <div>
         Already have an account? <Link to={"/signin"}>Sign In</Link>
       </div>
-      <div>Not yet functional.</div>
       {authenticating ? (
         <Loading />
       ) : (

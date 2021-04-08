@@ -78,7 +78,6 @@ function SignIn(props) {
         <div>
           Don't have an account? <Link to={"/signup"}>Sign Up</Link>
         </div>
-        <div>Not yet functional.</div>
         {authenticating ? (
           <Loading />
         ) : (

@@ -45,6 +45,7 @@ const Footer = () => {
                 if (detail.link) {
                   return (
                     <a
+                      key={detail.text}
                       href={detail.link}
                       className={"footer__detail footer__detail--link"}
                     >
@@ -52,7 +53,11 @@ const Footer = () => {
                     </a>
                   );
                 } else {
-                  return <div className={"footer__detail"}>{detail.text}</div>;
+                  return (
+                    <div key={detail.text} className={"footer__detail"}>
+                      {detail.text}
+                    </div>
+                  );
                 }
               })}
             </div>

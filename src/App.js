@@ -10,7 +10,9 @@ import Player from "./pages/Player";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Restricted from "./pages/Restricted";
-import FantasyTeam from "./pages/FantasyTeam";
+import { New as TeamsNew } from "./pages/teams/New";
+import { Index as TeamsIndex } from "./pages/teams/Index";
+import { Show as TeamsShow } from "./pages/teams/Show";
 import NotFound from "./pages/NotFound";
 import "./assets/stylesheets/App.scss";
 
@@ -46,10 +48,24 @@ function App() {
               }
             />
             <Route
-              path="/my-team"
+              path="/teams"
               exact
               children={
-                <FantasyTeam signedIn={signedIn} setSignedIn={setSignedIn} />
+                <TeamsIndex signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
+            />
+            <Route
+              path="/teams/new"
+              exact
+              children={
+                <TeamsNew signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
+            />
+            <Route
+              path="/teams/:id"
+              exact
+              children={
+                <TeamsShow signedIn={signedIn} setSignedIn={setSignedIn} />
               }
             />
             <Route path="/search" children={<Search />} />

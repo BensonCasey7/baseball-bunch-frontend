@@ -1,0 +1,25 @@
+.teams-list {
+  margin-bottom: $global-margin;
+
+  &__team {
+    font-size: 18px;
+    font-weight: $fw-semi-bold;
+    margin-bottom: $global-margin;
+  }
+}
+
+.team {
+  &__title {
+    font-size: 36px;
+    font-weight: $fw-black;
+  }
+
+  &__action {
+    cursor: pointer;
+
+    &--icon {
+      font-size: 24px;
+      margin-left: $global-margin / 2;
+    }
+  }
+}
