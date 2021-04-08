@@ -17,7 +17,7 @@ const Footer = () => {
         { text: "University of Illinois Urbana-Champaign" },
         { text: "CS 411: Database Systems" },
         { text: "Professor Kevin Chen-Chuan Chang" },
-        { text: "2021" },
+        { text: "Spring 2021" },
       ],
     },
     {
