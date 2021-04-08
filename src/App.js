@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./components/shared/Nav";
 import Footer from "./components/shared/Footer";
-import Stage3 from "./components/shared/Stage3";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Player from "./pages/Player";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Restricted from "./pages/Restricted";
 import { New as TeamsNew } from "./pages/teams/New";
 import { Index as TeamsIndex } from "./pages/teams/Index";
 import { Show as TeamsShow } from "./pages/teams/Show";
@@ -41,13 +39,6 @@ function App() {
               }
             />
             <Route
-              path="/restricted"
-              exact
-              children={
-                <Restricted signedIn={signedIn} setSignedIn={setSignedIn} />
-              }
-            />
-            <Route
               path="/teams"
               exact
               children={
@@ -72,7 +63,6 @@ function App() {
             <Route path="/players/:id" children={<Player />} />
             <Route component={NotFound} />
           </Switch>
-          <Stage3 />
         </div>
       </div>
       <Footer />
