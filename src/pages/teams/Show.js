@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import { BsPencil, BsTrash } from "react-icons/bs";
 
 import Loading from "../../components/shared/Loading";
+import Lineup from "../../components/teams/Lineup";
 import mockedPlayer from "../../components/players/mockedPlayer";
+import ForceAuthentication from "../../utils/ForceAuthentication";
 
 export const Show = (props) => {
   const [team, setTeam] = useState({});
@@ -98,6 +100,10 @@ export const Show = (props) => {
 
   return (
     <div className={"page"}>
+      <ForceAuthentication
+        signedIn={props.signedIn}
+        setSignedIn={props.setSignedIn}
+      />
       {loaded ? (
         <div>
           {editingName ? (
@@ -139,7 +145,7 @@ export const Show = (props) => {
             Mocked Players:
             {players.map((player) => {
               return (
-                <div key={player.id}>
+                <div key={player.playerID}>
                   <Link to={`/players/${player.playerID}`}>
                     {player.nameGiven}
                   </Link>
@@ -151,6 +157,7 @@ export const Show = (props) => {
       ) : (
         <Loading />
       )}
+      <Lineup teamId={teamId} />
     </div>
   );
 };

@@ -42,7 +42,7 @@ export const Index = (props) => {
           <div className={"teams-list"}>
             {teams.map((team) => {
               return (
-                <div>
+                <div key={team.fantasyteamid}>
                   <Link
                     to={`/teams/${team.fantasyteamid}`}
                     className={"teams-list__team"}

@@ -53,7 +53,6 @@ export const New = (props) => {
       <h1>New Team</h1>
       {badSubmit ? <div>{submitError}</div> : <div />}
       <form onSubmit={postTeam}>
-        {/*{badLogin ? <div className={"alert--error"}>{authError}</div> : <div />}*/}
         <div>
           <span>Team Name</span>
           <input
