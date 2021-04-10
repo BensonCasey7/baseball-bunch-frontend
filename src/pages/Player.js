@@ -13,7 +13,7 @@ function Player() {
   const playerId = useParams().id;
 
   useEffect(() => {
-    sleep(1000).then(() => {
+    sleep(500).then(() => {
       const response = mockedPlayer(playerId);
       if (response) {
         setPlayer(response);

@@ -2,20 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import Loading from "../components/shared/Loading";
-import sleep from "../utils/sleep";
+import PlayerWithYears from "../components/players/PlayerWithYears";
 
 function Search() {
-  const query = new URLSearchParams(useLocation().search).get("name");
-
   const [searchResults, setSearchResults] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const query = new URLSearchParams(useLocation().search).get("name");
 
   useEffect(() => {
-    sleep(1000).then(() => {
-      setSearchResults(mockedSearchResults);
-      setLoaded(true);
+    const requestOptions = {
+      method: "GET",
+    };
+    fetch(
+      `https://cs411baseball.web.illinois.edu/api/search?name=${query}`,
+      requestOptions
+    ).then(async (response) => {
+      if (response.status === 200) {
+        const data = await response.json();
+        setSearchResults(data);
+        setLoaded(true);
+      }
     });
-  }, [setSearchResults]);
+  }, [query, setSearchResults]);
 
   return (
     <div className={"page"}>
@@ -25,10 +33,12 @@ function Search() {
       </h3>
       {loaded ? (
         <div>
-          {searchResults.players.map((player) => {
+          {searchResults.map((player) => {
             return (
-              <div key={player.id}>
-                <Link to={`/players/${player.id}`}>{player.name}</Link>
+              <div key={player.playerid}>
+                <Link to={`/players/${player.playerid}`}>
+                  <PlayerWithYears player={player} />
+                </Link>
               </div>
             );
           })}
@@ -38,21 +48,6 @@ function Search() {
       )}
     </div>
   );
-}
-
-function mockedSearchResults() {
-  return {
-    players: [
-      {
-        name: "Kris Bryant",
-        id: "bryankr01",
-      },
-      {
-        name: "Jacob deGrom",
-        id: "degroja01",
-      },
-    ],
-  };
 }
 
 export default Search;
