@@ -10,6 +10,7 @@ function Search() {
   const query = new URLSearchParams(useLocation().search).get("name");
 
   useEffect(() => {
+    setLoaded(false);
     const requestOptions = {
       method: "GET",
     };
