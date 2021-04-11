@@ -38,7 +38,7 @@ const Lineup = (props) => {
           setPlayers(temp);
           setDirtyPlayers(temp);
           setLoaded(true);
-        } else if (response.status === 404) {
+        } else if (response.status === 409) {
           setNoLineup(true);
           setLoaded(true);
         }

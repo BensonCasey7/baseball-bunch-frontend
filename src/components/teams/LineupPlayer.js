@@ -39,7 +39,6 @@ const LineupPlayer = (props) => {
             onClick={() => {
               setEditingPlayer(true);
             }}
-            className={"team__action team__action--icon"}
           />
         </div>
       )}
