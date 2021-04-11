@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Loading from "../../components/shared/Loading";
+import Typeahead from "../players/Typeahead";
 
 const LineupForm = (props) => {
   const [players, setPlayers] = useState({
@@ -70,6 +71,15 @@ const LineupForm = (props) => {
     });
   };
 
+  const handleTypeaheadClick = (e) => {
+    setPlayers({
+      ...players,
+      [e.currentTarget.getAttribute("name")]: e.currentTarget.getAttribute(
+        "playerid"
+      ),
+    });
+  };
+
   return (
     <div>
       {badSubmit ? (
@@ -85,11 +95,11 @@ const LineupForm = (props) => {
               <div>
                 <label>
                   {key}
-                  <input
-                    type={"text"}
+                  <Typeahead
                     name={key}
                     value={value}
                     onChange={updatePlayers}
+                    onSuggestionClick={handleTypeaheadClick}
                   />
                 </label>
               </div>

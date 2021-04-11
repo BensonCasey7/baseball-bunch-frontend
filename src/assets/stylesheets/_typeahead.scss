@@ -1,0 +1,26 @@
+$typeahead-border: 1px $dark-gray solid;
+
+.typeahead {
+  position: relative;
+}
+
+.typeahead-results {
+  position: absolute;
+  z-index: 1000;
+  background-color: $white;
+  border: $typeahead-border;
+
+  &__result {
+    padding: $global-padding / 4;
+    border-bottom: $typeahead-border;
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $blue;
+    }
+  }
+}

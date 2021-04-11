@@ -5,7 +5,7 @@ import Loading from "../components/shared/Loading";
 import PlayerWithYears from "../components/players/PlayerWithYears";
 
 function Search() {
-  const [searchResults, setSearchResults] = useState({});
+  const [searchResults, setSearchResults] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const query = new URLSearchParams(useLocation().search).get("name");
 
