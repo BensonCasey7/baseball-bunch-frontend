@@ -5,12 +5,10 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 
 import Loading from "../../components/shared/Loading";
 import Lineup from "../../components/teams/Lineup";
-import mockedPlayer from "../../components/players/mockedPlayer";
 import ForceAuthentication from "../../utils/ForceAuthentication";
 
 export const Show = (props) => {
   const [team, setTeam] = useState({});
-  const [players, setPlayers] = useState([]);
   const [name, setName] = useState("");
   const [editingName, setEditingName] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -31,9 +29,6 @@ export const Show = (props) => {
     ).then(async (response) => {
       if (response.status === 200) {
         const data = await response.json();
-        const player1 = mockedPlayer("bryankr01");
-        const player2 = mockedPlayer("degroja01");
-        setPlayers([player1, player2]);
         setTeam(data);
         setName(team.teamname);
         setLoaded(true);
@@ -104,6 +99,7 @@ export const Show = (props) => {
         signedIn={props.signedIn}
         setSignedIn={props.setSignedIn}
       />
+      <Link to={"/teams"}>Back to Teams</Link>
       {loaded ? (
         <div>
           {editingName ? (
@@ -141,18 +137,6 @@ export const Show = (props) => {
               </div>
             </div>
           )}
-          <div>
-            Mocked Players:
-            {players.map((player) => {
-              return (
-                <div key={player.playerID}>
-                  <Link to={`/players/${player.playerID}`}>
-                    {player.nameGiven}
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
         </div>
       ) : (
         <Loading />
