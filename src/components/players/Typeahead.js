@@ -6,22 +6,26 @@ const Typeahead = (props) => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (props.value === "") {
-      setSearchResults([]);
-    } else {
-      const requestOptions = {
-        method: "GET",
-      };
-      fetch(
-        `https://cs411baseball.web.illinois.edu/api/search?name=${props.value}`,
-        requestOptions
-      ).then(async (response) => {
-        if (response.status === 200) {
-          const data = await response.json();
-          setSearchResults(data);
-        }
-      });
-    }
+    const delayDebounceFn = setTimeout(() => {
+      if (props.value === "") {
+        setSearchResults([]);
+      } else {
+        const requestOptions = {
+          method: "GET",
+        };
+        fetch(
+          `https://cs411baseball.web.illinois.edu/api/search?name=${props.value}`,
+          requestOptions
+        ).then(async (response) => {
+          if (response.status === 200) {
+            const data = await response.json();
+            setSearchResults(data);
+          }
+        });
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [props.value]);
 
   return (
