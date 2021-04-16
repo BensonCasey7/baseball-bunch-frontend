@@ -7,7 +7,7 @@ const Typeahead = (props) => {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (props.value === "") {
+      if (props.value.length < 4) {
         setSearchResults([]);
       } else {
         const requestOptions = {
@@ -23,7 +23,7 @@ const Typeahead = (props) => {
           }
         });
       }
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(delayDebounceFn);
   }, [props.value]);

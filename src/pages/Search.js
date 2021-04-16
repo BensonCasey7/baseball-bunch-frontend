@@ -10,20 +10,24 @@ function Search() {
   const query = new URLSearchParams(useLocation().search).get("name");
 
   useEffect(() => {
-    setLoaded(false);
-    const requestOptions = {
-      method: "GET",
-    };
-    fetch(
-      `https://cs411baseball.web.illinois.edu/api/search?name=${query}`,
-      requestOptions
-    ).then(async (response) => {
-      if (response.status === 200) {
-        const data = await response.json();
-        setSearchResults(data);
-        setLoaded(true);
-      }
-    });
+    if (query.length < 4) {
+      setLoaded(true);
+    } else {
+      setLoaded(false);
+      const requestOptions = {
+        method: "GET",
+      };
+      fetch(
+        `https://cs411baseball.web.illinois.edu/api/search?name=${query}`,
+        requestOptions
+      ).then(async (response) => {
+        if (response.status === 200) {
+          const data = await response.json();
+          setSearchResults(data);
+          setLoaded(true);
+        }
+      });
+    }
   }, [query, setSearchResults]);
 
   return (
