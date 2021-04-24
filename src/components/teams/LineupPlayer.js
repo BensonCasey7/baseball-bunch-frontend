@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsPencil } from "react-icons/bs";
 
+import Typeahead from "../players/Typeahead";
+
 const LineupPlayer = (props) => {
   const [editingPlayer, setEditingPlayer] = useState(false);
 
@@ -17,16 +19,25 @@ const LineupPlayer = (props) => {
     setEditingPlayer(false);
   };
 
+  const handleTypeaheadClick = (e) => {
+    props.setDirtyPlayers({
+      ...props.dirtyPlayers,
+      [e.currentTarget.getAttribute("name")]: e.currentTarget.getAttribute(
+        "playerid"
+      ),
+    });
+  };
+
   return (
     <div>
       {editingPlayer ? (
-        <form onSubmit={props.putLineup}>
+        <form onSubmit={props.putLineup} style={{ display: "flex" }}>
           <span>{props.position} </span>
-          <input
-            type={"text"}
-            value={props.playerid}
+          <Typeahead
             name={props.position}
+            value={props.playerid}
             onChange={updatePlayer}
+            onSuggestionClick={handleTypeaheadClick}
           />
           <input type={"button"} value={"Cancel"} onClick={cancelEdit} />
           <input type={"submit"} value={"Save Player"} />

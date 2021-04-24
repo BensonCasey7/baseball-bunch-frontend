@@ -23,10 +23,16 @@ const Typeahead = (props) => {
           }
         });
       }
-    }, 300);
+    }, 200);
 
     return () => clearTimeout(delayDebounceFn);
   }, [props.value]);
+
+  const handleSuggestionClick = (e) => {
+    e.preventDefault();
+    setSearchResults([]);
+    props.onSuggestionClick(e);
+  };
 
   return (
     <div className={"typeahead"}>
@@ -35,22 +41,27 @@ const Typeahead = (props) => {
         name={props.name}
         value={props.value}
         onChange={props.onChange}
+        className={props.inputClassName}
       />
-      <div className={"typeahead-results"}>
-        {searchResults.map((player) => {
-          return (
-            <div
-              key={player.playerid}
-              className={"typeahead-results__result"}
-              name={props.name}
-              playerid={player.playerid}
-              onClick={props.onSuggestionClick}
-            >
-              <PlayerWithYears player={player} />
-            </div>
-          );
-        })}
-      </div>
+      {searchResults.length === 0 ? (
+        <></>
+      ) : (
+        <div className={`typeahead-results ${props.suggestionsClassName}`}>
+          {searchResults.map((player) => {
+            return (
+              <div
+                key={player.playerid}
+                className={"typeahead-results__result"}
+                name={props.name}
+                playerid={player.playerid}
+                onClick={handleSuggestionClick}
+              >
+                <PlayerWithYears player={player} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

@@ -39,6 +39,17 @@
     }
   }
 
+  &__search-suggestions {
+    margin: 0 $global-margin;
+
+    @include breakpoint(medium) {
+      width: 200px;
+    }
+    @include breakpoint(large up) {
+      width: 380px;
+    }
+  }
+
   &__search-submit {
     margin: 0 $global-margin;
   }
