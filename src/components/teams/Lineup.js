@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "../../components/shared/Loading";
 import LineupForm from "./LineupForm";
 import LineupPlayer from "./LineupPlayer";
+import PlayersOnField from "./PlayersOnField";
 
 const Lineup = (props) => {
   const [noLineup, setNoLineup] = useState(false);
@@ -75,37 +76,44 @@ const Lineup = (props) => {
   };
 
   return (
-    <div>
-      <h2>Lineup</h2>
-      {loaded ? (
-        <div>
-          Player IDs
-          {Object.keys(dirtyPlayers).map((position) => {
-            return (
-              <LineupPlayer
-                key={position}
-                position={position}
-                playerid={dirtyPlayers[position]}
-                dirtyPlayers={dirtyPlayers}
-                setDirtyPlayers={setDirtyPlayers}
-                resetDirtyPlayers={resetDirtyPlayers}
-                putLineup={putLineup}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <Loading />
-      )}
-      {noLineup ? (
-        <LineupForm
-          teamId={props.teamId}
-          setNoLineup={setNoLineup}
-          putLineup={putLineup}
-        />
-      ) : (
-        <></>
-      )}
+    <div className={"grid-x"}>
+      <div className={"cell large-4"}>
+        <h2>Lineup</h2>
+        {loaded ? (
+          <div>
+            <div>
+              Player IDs
+              {Object.keys(dirtyPlayers).map((position) => {
+                return (
+                  <LineupPlayer
+                    key={position}
+                    position={position}
+                    playerid={dirtyPlayers[position]}
+                    dirtyPlayers={dirtyPlayers}
+                    setDirtyPlayers={setDirtyPlayers}
+                    resetDirtyPlayers={resetDirtyPlayers}
+                    putLineup={putLineup}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
+        {noLineup ? (
+          <LineupForm
+            teamId={props.teamId}
+            setNoLineup={setNoLineup}
+            putLineup={putLineup}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className={"cell large-8"}>
+        <PlayersOnField players={players} />
+      </div>
     </div>
   );
 };
