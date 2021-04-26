@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BsPencil } from "react-icons/bs";
 
 import Typeahead from "../players/Typeahead";
+import positionAbbreviations from "../../utils/positionAbbreviations";
 
 const LineupPlayer = (props) => {
   const [editingPlayer, setEditingPlayer] = useState(false);
@@ -38,6 +39,7 @@ const LineupPlayer = (props) => {
             value={props.playerid}
             onChange={updatePlayer}
             onSuggestionClick={handleTypeaheadClick}
+            position={positionAbbreviations[props.position]}
           />
           <input type={"button"} value={"Cancel"} onClick={cancelEdit} />
           <input type={"submit"} value={"Save Player"} />

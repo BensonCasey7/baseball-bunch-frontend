@@ -6,6 +6,18 @@ const Typeahead = (props) => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
+    const searchTerms = Object.entries({
+      name: props.value,
+      position: props.position,
+    })
+      .map(([key, value]) => {
+        return value ? `${key}=${value}` : false;
+      })
+      .filter((condition) => {
+        return !!condition;
+      })
+      .join("&");
+
     const delayDebounceFn = setTimeout(() => {
       if (props.value.length < 4) {
         setSearchResults([]);
@@ -14,7 +26,7 @@ const Typeahead = (props) => {
           method: "GET",
         };
         fetch(
-          `https://cs411baseball.web.illinois.edu/api/search?name=${props.value}`,
+          `https://cs411baseball.web.illinois.edu/api/search?${searchTerms}`,
           requestOptions
         ).then(async (response) => {
           if (response.status === 200) {

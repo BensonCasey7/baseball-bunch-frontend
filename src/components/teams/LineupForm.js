@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import Loading from "../../components/shared/Loading";
 import Typeahead from "../players/Typeahead";
+import positionAbbreviations from "../../utils/positionAbbreviations";
 
 const LineupForm = (props) => {
   const [players, setPlayers] = useState({
@@ -100,6 +101,7 @@ const LineupForm = (props) => {
                     value={value}
                     onChange={updatePlayers}
                     onSuggestionClick={handleTypeaheadClick}
+                    position={positionAbbreviations[key]}
                   />
                 </label>
               </div>
