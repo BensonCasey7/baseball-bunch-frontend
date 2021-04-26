@@ -3,7 +3,7 @@ import React from "react";
 import tableStructure from "./tableStructure";
 
 function PitcherTable(props) {
-  const structure = tableStructure(props.player.type);
+  const structure = tableStructure(playerType(props.playerStats));
 
   return (
     <div className={"table-container"}>
@@ -20,7 +20,7 @@ function PitcherTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.player.seasons.map((season) => {
+          {props.playerStats.map((season) => {
             return (
               <tr key={season.year} className={"table__row"}>
                 {Object.keys(structure).map((statKey) => {
@@ -41,5 +41,9 @@ function PitcherTable(props) {
     </div>
   );
 }
+
+const playerType = (playerStats) => {
+  return "hitter";
+};
 
 export default PitcherTable;

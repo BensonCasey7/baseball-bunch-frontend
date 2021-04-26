@@ -1,40 +1,74 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Table from "../components/players/Table";
-import mockedPlayer from "../components/players/mockedPlayer";
 import Loading from "../components/shared/Loading";
-import sleep from "../utils/sleep";
+import MockedDisplay from "../components/players/MockedDisplay";
+import Table from "../components/players/Table";
+import ForceAuthentication from "../utils/ForceAuthentication";
 
-function Player() {
+const Player = (props) => {
   const [player, setPlayer] = useState({});
+  const [playerStats, setPlayerStats] = useState({});
   const [loaded, setLoaded] = useState(false);
 
   const playerId = useParams().id;
 
   useEffect(() => {
-    sleep(500).then(() => {
-      const response = mockedPlayer(playerId);
-      if (response) {
-        setPlayer(response);
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    fetch(
+      `https://cs411baseball.web.illinois.edu/api/player/${playerId}`,
+      requestOptions
+    ).then(async (response) => {
+      if (response.status === 200) {
+        const data = await response.json();
+        setPlayer(data);
+      }
+    });
+    fetch(
+      `https://cs411baseball.web.illinois.edu/api/player/${playerId}/stats`,
+      requestOptions
+    ).then(async (response) => {
+      if (response.status === 200) {
+        const data = await response.json();
+        setPlayerStats(adjustSeasons(data.seasons));
         setLoaded(true);
       }
     });
-  }, [setPlayer, playerId]);
+  }, [playerId, setPlayer, setPlayerStats]);
 
   return (
     <div className={"page"}>
-      <div>Theoretically would find player with ID: {playerId}</div>
+      <ForceAuthentication
+        signedIn={props.signedIn}
+        setSignedIn={props.setSignedIn}
+      />
       {loaded ? (
         <div>
-          <h1>{player.nameGiven}</h1>
-          <Table player={player} />
+          <h1>{`${player.namefirst} ${player.namelast}`}</h1>
+          <Table playerStats={playerStats} />
         </div>
       ) : (
         <Loading />
       )}
+      <MockedDisplay />
     </div>
   );
-}
+};
+
+const adjustSeasons = (seasons) => {
+  const filteredSeasons = seasons.filter((season) => {
+    return season.year !== "2020";
+  });
+  const sortedSeasons = filteredSeasons.sort((a, b) =>
+    a.year > b.year ? 1 : b.year > a.year ? -1 : 0
+  );
+
+  return sortedSeasons;
+};
 
 export default Player;

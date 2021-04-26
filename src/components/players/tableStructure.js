@@ -1,12 +1,42 @@
-function tableStructure(type) {
-  if (type === "hitter") {
-    return hitterStructure();
+function tableStructure(type, mocked = false) {
+  if (mocked) {
+    if (type === "hitter") {
+      return mockedHitterStructure();
+    } else {
+      return mockedPitcherStructure();
+    }
   } else {
-    return pitcherStructure();
+    if (type === "hitter") {
+      return hitterStructure();
+    } else {
+      return pitcherStructure();
+    }
   }
 }
 
 function hitterStructure() {
+  return {
+    year: "Year",
+    team: "Team",
+    ab: "AB",
+    g: "G",
+    h: "H",
+    r: "R",
+  };
+}
+
+function pitcherStructure() {
+  return {
+    year: "Year",
+    team: "Team",
+    ab: "AB",
+    g: "G",
+    h: "H",
+    r: "R",
+  };
+}
+
+function mockedHitterStructure() {
   return {
     year: "Year",
     age: "Age",
@@ -32,7 +62,7 @@ function hitterStructure() {
   };
 }
 
-function pitcherStructure() {
+function mockedPitcherStructure() {
   return {
     year: "Year",
     age: "Age",

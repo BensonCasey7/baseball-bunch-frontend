@@ -60,7 +60,12 @@ function App() {
               }
             />
             <Route path="/search" children={<Search />} />
-            <Route path="/players/:id" children={<Player />} />
+            <Route
+              path="/players/:id"
+              children={
+                <Player signedIn={signedIn} setSignedIn={setSignedIn} />
+              }
+            />
             <Route component={NotFound} />
           </Switch>
         </div>
