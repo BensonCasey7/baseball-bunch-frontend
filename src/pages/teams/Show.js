@@ -6,6 +6,8 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 import Loading from "../../components/shared/Loading";
 import Lineup from "../../components/teams/Lineup";
 import ForceAuthentication from "../../utils/ForceAuthentication";
+import PlayersOnField from "../../components/teams/PlayersOnField";
+import Prediction from "../../components/teams/Prediction";
 
 export const Show = (props) => {
   const [team, setTeam] = useState({});
@@ -141,7 +143,14 @@ export const Show = (props) => {
       ) : (
         <Loading />
       )}
-      <Lineup teamId={teamId} />
+      <div className={"grid-x"}>
+        <div className={"cell large-6"}>
+          <Lineup teamId={teamId} />
+        </div>
+        <div className={"cell large-6"}>
+          <Prediction teamId={teamId} />
+        </div>
+      </div>
     </div>
   );
 };

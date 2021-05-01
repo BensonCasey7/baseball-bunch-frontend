@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import Loading from "../../components/shared/Loading";
 import LineupForm from "./LineupForm";
 import LineupPlayer from "./LineupPlayer";
-import PlayersOnField from "./PlayersOnField";
-import Prediction from "./Prediction";
 
 const Lineup = (props) => {
   const [noLineup, setNoLineup] = useState(false);
@@ -77,46 +75,48 @@ const Lineup = (props) => {
   };
 
   return (
-    <div className={"grid-x"}>
-      <div className={"cell large-4"}>
-        <h2>Lineup</h2>
-        {loaded ? (
-          <div>
-            <div>
-              Player IDs
-              {Object.keys(dirtyPlayers).map((position) => {
-                return (
-                  <LineupPlayer
-                    key={position}
-                    position={position}
-                    playerid={dirtyPlayers[position]}
-                    dirtyPlayers={dirtyPlayers}
-                    setDirtyPlayers={setDirtyPlayers}
-                    resetDirtyPlayers={resetDirtyPlayers}
-                    putLineup={putLineup}
-                  />
-                );
-              })}
-            </div>
-            <Prediction teamId={props.teamId} />
-          </div>
-        ) : (
-          <Loading />
-        )}
-        {noLineup ? (
-          <LineupForm
-            teamId={props.teamId}
-            setNoLineup={setNoLineup}
-            putLineup={putLineup}
-          />
-        ) : (
-          <></>
-        )}
-      </div>
-      <div className={"cell large-8"}>
-        <PlayersOnField players={players} />
-      </div>
-    </div>
+    <>
+      <h2>Lineup</h2>
+      {noLineup ? (
+        <LineupForm
+          teamId={props.teamId}
+          setNoLineup={setNoLineup}
+          putLineup={putLineup}
+        />
+      ) : (
+        <>
+          {loaded ? (
+            <>
+              <div className={"team-field"}>
+                <b>Display work in progress</b>
+                {Object.keys(dirtyPlayers).map((position) => {
+                  return (
+                    <div
+                      className={`team-field__player team-field__player--${position.replace(
+                        "_",
+                        "-"
+                      )}`}
+                    >
+                      <LineupPlayer
+                        key={position}
+                        position={position}
+                        playerid={dirtyPlayers[position]}
+                        dirtyPlayers={dirtyPlayers}
+                        setDirtyPlayers={setDirtyPlayers}
+                        resetDirtyPlayers={resetDirtyPlayers}
+                        putLineup={putLineup}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <Loading />
+          )}
+        </>
+      )}
+    </>
   );
 };
 

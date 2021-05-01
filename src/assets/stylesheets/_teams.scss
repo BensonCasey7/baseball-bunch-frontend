@@ -24,6 +24,14 @@
   }
 }
 
+.lineup-player {
+  position: relative;
+
+  &__action {
+    position: absolute;
+  }
+}
+
 .team-field {
   height: 400px;
   width: 400px;

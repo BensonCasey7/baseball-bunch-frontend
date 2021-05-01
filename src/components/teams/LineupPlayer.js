@@ -30,10 +30,9 @@ const LineupPlayer = (props) => {
   };
 
   return (
-    <div>
+    <>
       {editingPlayer ? (
         <form onSubmit={props.putLineup} style={{ display: "flex" }}>
-          <span>{props.position} </span>
           <Typeahead
             name={props.position}
             value={props.playerid}
@@ -45,17 +44,17 @@ const LineupPlayer = (props) => {
           <input type={"submit"} value={"Save Player"} />
         </form>
       ) : (
-        <div key={props.position}>
-          <span>{props.position} </span>
+        <div key={props.position} className={"lineup-player"}>
           <Link to={`/players/${props.playerid}`}>{props.playerid}</Link>
           <BsPencil
             onClick={() => {
               setEditingPlayer(true);
             }}
+            className={"lineup-player__action"}
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
 
