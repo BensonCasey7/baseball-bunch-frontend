@@ -4,6 +4,7 @@ import Loading from "../../components/shared/Loading";
 import LineupForm from "./LineupForm";
 import LineupPlayer from "./LineupPlayer";
 import PlayersOnField from "./PlayersOnField";
+import Prediction from "./Prediction";
 
 const Lineup = (props) => {
   const [noLineup, setNoLineup] = useState(false);
@@ -97,6 +98,7 @@ const Lineup = (props) => {
                 );
               })}
             </div>
+            <Prediction teamId={props.teamId} />
           </div>
         ) : (
           <Loading />
