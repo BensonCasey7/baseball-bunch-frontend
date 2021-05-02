@@ -6,7 +6,6 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 import Loading from "../../components/shared/Loading";
 import Lineup from "../../components/teams/Lineup";
 import ForceAuthentication from "../../utils/ForceAuthentication";
-import PlayersOnField from "../../components/teams/PlayersOnField";
 import Prediction from "../../components/teams/Prediction";
 
 export const Show = (props) => {

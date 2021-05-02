@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Table from "./Table";
 import mockedPlayer from "./mockedPlayer";
 import Loading from "../shared/Loading";
 import sleep from "../../utils/sleep";

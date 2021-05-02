@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Typeahead from "../players/Typeahead";
-import positionAbbreviations from "../../utils/positionAbbreviations";
+import React, { useState } from "react";
+import Loading from "../shared/Loading";
 
 const Prediction = (props) => {
-  const [prediction, setPrediction] = useState({});
-  const [loaded, setLoaded] = useState(false);
+  const [prediction, setPrediction] = useState(undefined);
+  const [loaded, setLoaded] = useState(true);
 
   const handleClick = () => {
     setLoaded(false);
+    setPrediction(undefined);
 
     let requestOptions = {
       method: "GET",
@@ -27,28 +27,84 @@ const Prediction = (props) => {
     });
   };
 
+  const predictionAggregate = () => {
+    let aggregate = { yes: [], no: [] };
+    if (!prediction) {
+      return aggregate;
+    } else {
+      Object.entries(prediction).forEach(([key, value]) => {
+        if (prediction[key]["predicted to be champion?"] === "Yes") {
+          aggregate.yes = aggregate.yes.concat(key);
+        } else {
+          aggregate.no = aggregate.no.concat(key);
+        }
+      });
+      return aggregate;
+    }
+  };
+
+  const predictionHeader = () => {
+    if (!prediction) {
+      return "";
+    } else {
+      switch (predictionAggregate().yes.length) {
+        case 0:
+          return "This team could use some work";
+        case 1:
+          return "This team's got an outside shot";
+        case 2:
+          return "Looking good";
+        default:
+          return "That's a great team you've got there";
+      }
+    }
+  };
+
+  const predictionSummary = () => {
+    if (!prediction) {
+      return "";
+    } else {
+      const aggregate = predictionAggregate();
+      const yesList =
+        aggregate.yes.slice(0, aggregate.yes.length - 1).join(", ") +
+        " and " +
+        aggregate.yes.slice(-1);
+      const noList =
+        aggregate.no.slice(0, aggregate.no.length - 1).join(", ") +
+        " and " +
+        aggregate.no.slice(-1);
+      switch (predictionAggregate().yes.length) {
+        case 0:
+          return `${noList} all predict that this team is not up to the task.`;
+        case 1:
+          return `${noList} predict that this team is not ready for a championship. However, according to ${yesList}, this team has a shot.`;
+        case 2:
+          return `${yesList} predict that this is a championship level team. However, ${noList} does not.`;
+        default:
+          return `${yesList} all predict that this is a championship level team.`;
+      }
+    }
+  };
+
   return (
     <>
       <h3>Is this a championship caliber team?</h3>
       <button onClick={handleClick}>Test your team</button>
-      {loaded ? (
+      {prediction ? (
         <>
-          {Object.entries(prediction).map(([key, value]) => {
-            return (
-              <div key={key}>
-                According to {key}, we predict that{" "}
-                {prediction[key]["predicted fantasy team name"]} will{" "}
-                {prediction[key]["predicted to be champion?"] == "Yes"
-                  ? ""
-                  : "not"}{" "}
-                be a champion with{" "}
-                {(prediction[key]["accuracy"] * 100).toFixed(1)}% accuracy
-              </div>
-            );
-          })}
+          <h2>{predictionHeader()}</h2>
+          <div>{predictionSummary()}</div>
         </>
       ) : (
-        <></>
+        <>
+          {loaded ? (
+            <></>
+          ) : (
+            <>
+              <Loading />
+            </>
+          )}
+        </>
       )}
     </>
   );

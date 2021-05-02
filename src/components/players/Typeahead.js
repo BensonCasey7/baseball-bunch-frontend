@@ -38,7 +38,7 @@ const Typeahead = (props) => {
     }, 200);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [props.value]);
+  }, [props.position, props.value]);
 
   const handleSuggestionClick = (e) => {
     e.preventDefault();
