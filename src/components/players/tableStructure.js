@@ -20,8 +20,12 @@ function hitterStructure() {
     team: "Team",
     ab: "AB",
     g: "G",
-    h: "H",
     r: "R",
+    h: "H",
+    _2b: "2B",
+    _3b: "3B",
+    batting_hr: "HR",
+    rbi: "RBI",
   };
 }
 
@@ -29,10 +33,14 @@ function pitcherStructure() {
   return {
     year: "Year",
     team: "Team",
-    ab: "AB",
     g: "G",
-    h: "H",
-    r: "R",
+    w: "W",
+    l: "L",
+    era: "ERA",
+    er: "ER",
+    pitching_bb: "BB",
+    ibb: "IBB",
+    sv: "SV",
   };
 }
 

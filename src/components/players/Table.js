@@ -3,7 +3,12 @@ import React from "react";
 import tableStructure from "./tableStructure";
 
 function PitcherTable(props) {
-  const structure = tableStructure(playerType(props.playerStats));
+  const playerType =
+    isNaN(parseInt(props.playerStats[0].pitching_so)) ||
+    parseInt(props.playerStats[0].pitching_so) < 2
+      ? "hitter"
+      : "pitcher";
+  const structure = tableStructure(playerType);
 
   return (
     <div className={"table-container"}>
@@ -42,8 +47,8 @@ function PitcherTable(props) {
   );
 }
 
-const playerType = (playerStats) => {
-  return "hitter";
-};
+// const playerType = (playerStats) => {
+//   return "hitter";
+// };
 
 export default PitcherTable;
