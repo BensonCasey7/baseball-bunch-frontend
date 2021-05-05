@@ -1,0 +1,26 @@
+.player {
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(large up) {
+      flex-direction: row;
+    }
+  }
+
+  &__table {
+    align-self: center;
+    margin-bottom: $global-margin;
+
+    @include breakpoint(large up) {
+      align-self: auto;
+    }
+  }
+
+  &__chart {
+    height: 400px;
+    display: flex;
+    flex-grow: 1;
+  }
+}

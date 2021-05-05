@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Loading from "../components/shared/Loading";
-import MockedDisplay from "../components/players/MockedDisplay";
 import Table from "../components/players/Table";
 import ForceAuthentication from "../utils/ForceAuthentication";
+import SeasonsChart from "../components/players/SeasonsChart";
 
 const Player = (props) => {
   const [player, setPlayer] = useState({});
@@ -48,14 +48,22 @@ const Player = (props) => {
         setSignedIn={props.setSignedIn}
       />
       {loaded ? (
-        <div>
+        <div className={"player"}>
           <h1>{`${player.namefirst} ${player.namelast}`}</h1>
-          <Table playerStats={playerStats} />
+
+          <div className={"player__body"}>
+            <div className={"player__table"}>
+              <Table playerStats={playerStats} />
+            </div>
+
+            <div className={"player__chart"}>
+              <SeasonsChart data={playerStats} />
+            </div>
+          </div>
         </div>
       ) : (
         <Loading />
       )}
-      <MockedDisplay />
     </div>
   );
 };

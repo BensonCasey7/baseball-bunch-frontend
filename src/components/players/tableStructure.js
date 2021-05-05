@@ -38,6 +38,7 @@ function pitcherStructure() {
     l: "L",
     era: "ERA",
     er: "ER",
+    pitching_so: "K",
     pitching_bb: "BB",
     ibb: "IBB",
     sv: "SV",

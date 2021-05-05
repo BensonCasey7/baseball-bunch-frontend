@@ -47,8 +47,4 @@ function PitcherTable(props) {
   );
 }
 
-// const playerType = (playerStats) => {
-//   return "hitter";
-// };
-
 export default PitcherTable;
