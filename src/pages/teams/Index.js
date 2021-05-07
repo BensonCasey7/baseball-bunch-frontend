@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import ForceAuthentication from "../../utils/ForceAuthentication";
 import Loading from "../../components/shared/Loading";
+import Breadcrumbs from "../../components/shared/Breadcrumbs";
 
 export const Index = (props) => {
   const [teams, setTeams] = useState([]);
@@ -36,7 +37,8 @@ export const Index = (props) => {
         signedIn={props.signedIn}
         setSignedIn={props.setSignedIn}
       />
-      <h1>My Fantasy Teams</h1>
+      <Breadcrumbs path={[{ text: "My Teams" }]} />
+      <h1>My Teams</h1>
       {loaded ? (
         <div>
           <div className={"teams-list"}>

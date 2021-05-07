@@ -7,6 +7,7 @@ import Loading from "../../components/shared/Loading";
 import Lineup from "../../components/teams/Lineup";
 import ForceAuthentication from "../../utils/ForceAuthentication";
 import Prediction from "../../components/teams/Prediction";
+import Breadcrumbs from "../../components/shared/Breadcrumbs";
 
 export const Show = (props) => {
   const [team, setTeam] = useState({});
@@ -100,7 +101,9 @@ export const Show = (props) => {
         signedIn={props.signedIn}
         setSignedIn={props.setSignedIn}
       />
-      <Link to={"/teams"}>Back to Teams</Link>
+      <Breadcrumbs
+        path={[{ text: "My Teams", href: "/teams" }, { text: team.teamname }]}
+      />
       {loaded ? (
         <div>
           {editingName ? (

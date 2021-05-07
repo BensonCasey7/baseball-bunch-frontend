@@ -34,7 +34,7 @@ function Search() {
     <div className={"page"}>
       <h1>Search</h1>
       <h3>
-        Theoretical search results for "<code>{query}"</code>
+        Search results for "<code>{query}"</code>
       </h3>
       {loaded ? (
         <div>

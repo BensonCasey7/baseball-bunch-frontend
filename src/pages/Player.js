@@ -5,6 +5,7 @@ import Loading from "../components/shared/Loading";
 import Table from "../components/players/Table";
 import ForceAuthentication from "../utils/ForceAuthentication";
 import SeasonsChart from "../components/players/SeasonsChart";
+import Breadcrumbs from "../components/shared/Breadcrumbs";
 
 const Player = (props) => {
   const [player, setPlayer] = useState({});
@@ -48,19 +49,24 @@ const Player = (props) => {
         setSignedIn={props.setSignedIn}
       />
       {loaded ? (
-        <div className={"player"}>
-          <h1>{`${player.namefirst} ${player.namelast}`}</h1>
+        <>
+          <Breadcrumbs
+            path={[{ text: `${player.namefirst} ${player.namelast}` }]}
+          />
+          <div className={"player"}>
+            <h1>{`${player.namefirst} ${player.namelast}`}</h1>
 
-          <div className={"player__body"}>
-            <div className={"player__table"}>
-              <Table playerStats={playerStats} />
-            </div>
+            <div className={"player__body"}>
+              <div className={"player__table"}>
+                <Table playerStats={playerStats} />
+              </div>
 
-            <div className={"player__chart"}>
-              <SeasonsChart data={playerStats} />
+              <div className={"player__chart"}>
+                <SeasonsChart data={playerStats} />
+              </div>
             </div>
           </div>
-        </div>
+        </>
       ) : (
         <Loading />
       )}

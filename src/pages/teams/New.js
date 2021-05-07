@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import Loading from "../../components/shared/Loading";
 import ForceAuthentication from "../../utils/ForceAuthentication";
+import Breadcrumbs from "../../components/shared/Breadcrumbs";
 
 export const New = (props) => {
   const [name, setName] = useState("");
@@ -50,17 +51,15 @@ export const New = (props) => {
         signedIn={props.signedIn}
         setSignedIn={props.setSignedIn}
       />
+      <Breadcrumbs
+        path={[{ text: "My Teams", href: "/teams" }, { text: "New Team" }]}
+      />
       <h1>New Team</h1>
       {badSubmit ? <div>{submitError}</div> : <div />}
       <form onSubmit={postTeam}>
         <div>
           <span>Team Name</span>
-          <input
-            type={"text"}
-            value={name}
-            placeholder={"Username"}
-            onChange={handleNameInput}
-          />
+          <input type={"text"} value={name} onChange={handleNameInput} />
         </div>
         {submitting ? (
           <Loading />
