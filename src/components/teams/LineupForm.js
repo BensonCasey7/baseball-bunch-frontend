@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Loading from "../../components/shared/Loading";
 import Typeahead from "../players/Typeahead";
 import positionAbbreviations from "../../utils/positionAbbreviations";
+import BaseballDiamond from "../../assets/images/baseball-diamond.png";
 
 const LineupForm = (props) => {
   const [players, setPlayers] = useState({
@@ -53,15 +54,15 @@ const LineupForm = (props) => {
   const autoFillLineup = (event) => {
     event.preventDefault();
     setPlayers({
-      pitcher: "hendrky01",
-      catcher: "contrwi01",
-      first_base: "rizzoan01",
-      second_base: "boteda01",
-      third_base: "bryankr01",
-      short_stop: "baezja01",
-      left_fielder: "pederjo01",
-      center_fielder: "happia01",
-      right_fielder: "heywaja01",
+      pitcher: "degroja01",
+      catcher: "grandya01",
+      first_base: "freemfr01",
+      second_base: "altuvjo01",
+      third_base: "arenano01",
+      short_stop: "storytr01",
+      left_fielder: "sotoju01",
+      center_fielder: "troutmi01",
+      right_fielder: "yelicch01",
     });
   };
 
@@ -82,44 +83,48 @@ const LineupForm = (props) => {
   };
 
   return (
-    <div>
-      {badSubmit ? (
-        <div className={"alert--error"}>{submitError}</div>
-      ) : (
-        <div />
-      )}
-      <form onSubmit={postLineup}>
+    <>
+      {badSubmit ? <div className={"alert--error"}>{submitError}</div> : <></>}
+      <form
+        onSubmit={postLineup}
+        className={"team-field"}
+        style={{
+          backgroundImage: `url(${BaseballDiamond})`,
+        }}
+      >
         {Object.entries(players).map(([key, value]) => {
           return (
-            <div key={key}>
-              <br />
-              <div>
-                <label>
-                  {key}
-                  <Typeahead
-                    name={key}
-                    value={value}
-                    onChange={updatePlayers}
-                    onSuggestionClick={handleTypeaheadClick}
-                    position={positionAbbreviations[key]}
-                  />
-                </label>
-              </div>
+            <div
+              key={key}
+              className={`team-field__player team-field__player--${key.replace(
+                "_",
+                "-"
+              )}`}
+            >
+              <label className={"lineup-player__form"}>
+                <Typeahead
+                  name={key}
+                  value={value}
+                  onChange={updatePlayers}
+                  onSuggestionClick={handleTypeaheadClick}
+                  position={positionAbbreviations[key]}
+                />
+              </label>
             </div>
           );
         })}
         {submitting ? (
           <Loading />
         ) : (
-          <>
+          <div className={"team-field__form-actions"}>
             <button className={"button"} onClick={autoFillLineup}>
-              Auto Fill Lineup
+              Suggest Lineup
             </button>
             <input type={"submit"} value={"Save Lineup"} className={"button"} />
-          </>
+          </div>
         )}
       </form>
-    </div>
+    </>
   );
 };
 
