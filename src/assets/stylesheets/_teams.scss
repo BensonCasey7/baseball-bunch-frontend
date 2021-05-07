@@ -22,62 +22,107 @@
       margin-left: $global-margin / 2;
     }
   }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .lineup-player {
-  position: relative;
+  display: flex;
+  align-items: center;
 
   &__action {
-    position: absolute;
+    margin-left: $global-margin / 4;
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100px;
+    }
+  }
+
+  &__form-actions {
+    display: flex;
   }
 }
 
 .team-field {
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   position: relative;
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  font-size: 12px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.8);
+  }
+
+  @include breakpoint(medium up) {
+    font-size: 14px;
+    height: 400px;
+    width: 400px;
+    background-size: 400px;
+  }
 
   &__player {
     position: absolute;
+    background-color: $white;
+    padding: $global-padding / 4;
+    border: 1px $black solid;
+    border-radius: 3px;
 
     &--pitcher {
-      bottom: 25%;
+      bottom: 40%;
       left: 50%;
       transform: translate(-50%, 0);
     }
 
     &--catcher {
-      bottom: 0;
+      bottom: 10%;
       left: 50%;
       transform: translate(-50%, 0);
     }
 
     &--first-base {
-      bottom: 25%;
-      left: 80%;
+      bottom: 40%;
+      left: 85%;
       transform: translate(-50%, 0);
     }
 
     &--second-base {
-      bottom: 45%;
-      left: 65%;
+      bottom: 60%;
+      left: 70%;
       transform: translate(-50%, 0);
     }
 
     &--third-base {
-      bottom: 25%;
-      left: 20%;
+      bottom: 40%;
+      left: 15%;
       transform: translate(-50%, 0);
     }
 
     &--short-stop {
-      bottom: 45%;
-      left: 35%;
+      bottom: 60%;
+      left: 30%;
       transform: translate(-50%, 0);
     }
 
     &--left-fielder {
-      bottom: 70%;
+      bottom: 75%;
       left: 15%;
       transform: translate(-50%, 0);
     }
@@ -89,7 +134,7 @@
     }
 
     &--right-fielder {
-      bottom: 70%;
+      bottom: 75%;
       left: 85%;
       transform: translate(-50%, 0);
     }

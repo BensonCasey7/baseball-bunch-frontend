@@ -143,10 +143,10 @@ export const Show = (props) => {
         <Loading />
       )}
       <div className={"grid-x"}>
-        <div className={"cell large-6"}>
+        <div className={"cell large-6 team__column"}>
           <Lineup teamId={teamId} />
         </div>
-        <div className={"cell large-6"}>
+        <div className={"cell large-6 team__column"}>
           <Prediction teamId={teamId} />
         </div>
       </div>

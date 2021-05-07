@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import BaseballDiamond from "../../assets/images/baseball-diamond.png";
+
 import Loading from "../../components/shared/Loading";
 import LineupForm from "./LineupForm";
 import LineupPlayer from "./LineupPlayer";
@@ -76,7 +78,6 @@ const Lineup = (props) => {
 
   return (
     <>
-      <h2>Lineup</h2>
       {noLineup ? (
         <LineupForm
           teamId={props.teamId}
@@ -87,8 +88,12 @@ const Lineup = (props) => {
         <>
           {loaded ? (
             <>
-              <div className={"team-field"}>
-                <b>Display work in progress</b>
+              <div
+                className={"team-field"}
+                style={{
+                  backgroundImage: `url(${BaseballDiamond})`,
+                }}
+              >
                 {Object.keys(dirtyPlayers).map((position) => {
                   return (
                     <div
