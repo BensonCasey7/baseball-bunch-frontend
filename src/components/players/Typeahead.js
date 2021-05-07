@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import PlayerWithYears from "./PlayerWithYears";
+import useKeypress from "../../hooks/useKeypress";
 
 const Typeahead = (props) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -39,6 +40,10 @@ const Typeahead = (props) => {
 
     return () => clearTimeout(delayDebounceFn);
   }, [props.position, props.value]);
+
+  useKeypress("Escape", () => {
+    setSearchResults([]);
+  });
 
   const handleSuggestionClick = (e) => {
     e.preventDefault();
