@@ -33,15 +33,15 @@ const HitterSeasonsChart = (props) => {
         <Tooltip />
         <Legend />
         <Line yAxisId="left" type="monotone" dataKey="H" stroke="#D91E36" />
-        <Line yAxisId="left" type="monotone" dataKey="HR" stroke="#DA344D" />
-        <Line yAxisId="left" type="monotone" dataKey="RBI" stroke="#EC5766" />
-        <Line yAxisId="right" type="monotone" dataKey="H/G" stroke="#27187E" />
-        <Line yAxisId="right" type="monotone" dataKey="HR/G" stroke="#6874E8" />
+        <Line yAxisId="right" type="monotone" dataKey="H/G" stroke="#EC5766" />
+        <Line yAxisId="left" type="monotone" dataKey="HR" stroke="#27187E" />
+        <Line yAxisId="right" type="monotone" dataKey="HR/G" stroke="#5ADBFF" />
+        <Line yAxisId="left" type="monotone" dataKey="RBI" stroke="#12664F" />
         <Line
           yAxisId="right"
           type="monotone"
           dataKey="RBI/G"
-          stroke="#5ADBFF"
+          stroke="#40DDB3"
         />
       </LineChart>
     </ResponsiveContainer>

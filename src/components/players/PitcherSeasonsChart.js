@@ -33,9 +33,9 @@ const PitcherSeasonsChart = (props) => {
         <Tooltip />
         <Legend />
         <Line yAxisId="left" type="monotone" dataKey="K" stroke="#D91E36" />
-        <Line yAxisId="left" type="monotone" dataKey="BB" stroke="#DA344D" />
-        <Line yAxisId="right" type="monotone" dataKey="ERA" stroke="#27187E" />
-        <Line yAxisId="right" type="monotone" dataKey="K/G" stroke="#6874E8" />
+        <Line yAxisId="right" type="monotone" dataKey="K/G" stroke="#EC5766" />
+        <Line yAxisId="left" type="monotone" dataKey="BB" stroke="#27187E" />
+        <Line yAxisId="right" type="monotone" dataKey="ERA" stroke="#12664F" />
       </LineChart>
     </ResponsiveContainer>
   );
