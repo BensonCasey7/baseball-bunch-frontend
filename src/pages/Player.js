@@ -74,7 +74,7 @@ const Player = (props) => {
   );
 };
 
-const adjustSeasons = (seasons) => {
+export const adjustSeasons = (seasons) => {
   const filteredSeasons = seasons.filter((season) => {
     return season.year !== "2020";
   });

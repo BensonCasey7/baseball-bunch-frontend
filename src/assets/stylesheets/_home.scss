@@ -1,0 +1,31 @@
+.home {
+  &__header {
+    font-size: 48px;
+    text-align: center;
+  }
+
+  &__subheader {
+    font-size: 32px;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  &__blurb {
+    font-size: 18px;
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  &__chart {
+    height: 400px;
+    display: none;
+
+    @include breakpoint(large up) {
+      display: block;
+    }
+  }
+}

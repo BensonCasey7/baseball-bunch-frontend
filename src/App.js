@@ -23,7 +23,7 @@ function App() {
       <div className={"page-wrapper"}>
         <div className={"page-wrapper__content"}>
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact children={<Home signedIn={signedIn} />} />
             <Route
               path="/signin"
               exact
