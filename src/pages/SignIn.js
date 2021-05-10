@@ -54,36 +54,38 @@ function SignIn(props) {
 
   return (
     <div className={"page"}>
-      <form onSubmit={authenticateUser}>
-        <h1>Sign In</h1>
-        {badLogin ? <div className={"alert--error"}>{authError}</div> : <div />}
-        <div>Username</div>
-        <div>
+      <div className={"auth"}>
+        <form onSubmit={authenticateUser} className={"auth__form"}>
+          <h1>Sign In</h1>
+          {badLogin ? (
+            <div className={"alert--error"}>{authError}</div>
+          ) : (
+            <div />
+          )}
           <input
             type={"text"}
             value={username}
             placeholder={"Username"}
             onChange={handleUsernameInput}
+            className={"auth__input"}
           />
-        </div>
-        <div>Password</div>
-        <div>
           <input
             type={"text"}
             value={"*".repeat(password.length)}
             placeholder={"Password"}
             onChange={handlePasswordInput}
+            className={"auth__input"}
           />
-        </div>
-        <div>
-          Don't have an account? <Link to={"/signup"}>Sign Up</Link>
-        </div>
-        {authenticating ? (
-          <Loading />
-        ) : (
-          <input type={"submit"} value={"Sign In"} className={"button"} />
-        )}
-      </form>
+          <div>
+            Don't have an account? <Link to={"/signup"}>Sign Up</Link>
+          </div>
+          {authenticating ? (
+            <Loading />
+          ) : (
+            <input type={"submit"} value={"Sign In"} className={"button"} />
+          )}
+        </form>
+      </div>
     </div>
   );
 }

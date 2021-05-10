@@ -14,6 +14,7 @@ export const Show = (props) => {
   const [name, setName] = useState("");
   const [editingName, setEditingName] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [noLineup, setNoLineup] = useState(false);
   const history = useHistory();
 
   const teamId = useParams().id;
@@ -147,10 +148,14 @@ export const Show = (props) => {
       )}
       <div className={"grid-x"}>
         <div className={"cell large-6 team__column"}>
-          <Lineup teamId={teamId} />
+          <Lineup
+            teamId={teamId}
+            noLineup={noLineup}
+            setNoLineup={setNoLineup}
+          />
         </div>
         <div className={"cell large-6 team__column"}>
-          <Prediction teamId={teamId} />
+          <Prediction teamId={teamId} noLineup={noLineup} />
         </div>
       </div>
     </div>

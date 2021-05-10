@@ -79,45 +79,45 @@ function SignUp(props) {
 
   return (
     <div className={"page"}>
-      <h1>Create an Account</h1>
-      {badLogin ? <div>{authError}</div> : <div />}
-      <div>Email</div>
-      <div>
-        <input
-          type={"text"}
-          value={email}
-          placeholder={"Email"}
-          onChange={handleEmailInput}
-        />
+      <div className={"auth"}>
+        <form onSubmit={postSignUp} className={"auth__form"}>
+          <h1>Create an Account</h1>
+          {badLogin ? <div>{authError}</div> : <div />}
+          <input
+            type={"text"}
+            value={email}
+            placeholder={"Email"}
+            onChange={handleEmailInput}
+            className={"auth__input"}
+          />
+          <input
+            type={"text"}
+            value={username}
+            placeholder={"Username"}
+            onChange={handleUsernameInput}
+            className={"auth__input"}
+          />
+          <input
+            type={"text"}
+            value={"*".repeat(password.length)}
+            placeholder={"Password"}
+            onChange={handlePasswordInput}
+            className={"auth__input"}
+          />
+          <div>
+            Already have an account? <Link to={"/signin"}>Sign In</Link>
+          </div>
+          {authenticating ? (
+            <Loading />
+          ) : (
+            <input
+              type={"submit"}
+              value={"Create Account"}
+              className={"button"}
+            />
+          )}
+        </form>
       </div>
-      <div>Username</div>
-      <div>
-        <input
-          type={"text"}
-          value={username}
-          placeholder={"Username"}
-          onChange={handleUsernameInput}
-        />
-      </div>
-      <div>Password</div>
-      <div>
-        <input
-          type={"text"}
-          value={"*".repeat(password.length)}
-          placeholder={"Password"}
-          onChange={handlePasswordInput}
-        />
-      </div>
-      <div>
-        Already have an account? <Link to={"/signin"}>Sign In</Link>
-      </div>
-      {authenticating ? (
-        <Loading />
-      ) : (
-        <button className={"button"} onClick={postSignUp}>
-          Create Account
-        </button>
-      )}
     </div>
   );
 }

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Loading from "../shared/Loading";
+import LineupForm from "./LineupForm";
+import BaseballDiamond from "../../assets/images/baseball-diamond.png";
+import LineupPlayer from "./LineupPlayer";
 
 const Prediction = (props) => {
   const [prediction, setPrediction] = useState(undefined);
@@ -88,20 +91,26 @@ const Prediction = (props) => {
 
   return (
     <>
-      <h3>Is this a championship caliber team?</h3>
-      <button onClick={handleClick}>Test your team</button>
-      {prediction ? (
-        <>
-          <h2>{predictionHeader()}</h2>
-          <div>{predictionSummary()}</div>
-        </>
+      {props.noLineup ? (
+        <></>
       ) : (
         <>
-          {loaded ? (
-            <></>
+          <h3>Is this a championship caliber team?</h3>
+          <button onClick={handleClick}>Test your team</button>
+          {prediction ? (
+            <>
+              <h2>{predictionHeader()}</h2>
+              <div>{predictionSummary()}</div>
+            </>
           ) : (
             <>
-              <Loading />
+              {loaded ? (
+                <></>
+              ) : (
+                <>
+                  <Loading />
+                </>
+              )}
             </>
           )}
         </>

@@ -1,0 +1,22 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    justify-content: space-evenly;
+    padding: 24px;
+    background-color: $light-gray;
+  }
+
+  &__input {
+    margin-bottom: $global-margin;
+    font-size: 20px;
+  }
+}

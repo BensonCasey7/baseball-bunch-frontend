@@ -7,7 +7,7 @@ import LineupForm from "./LineupForm";
 import LineupPlayer from "./LineupPlayer";
 
 const Lineup = (props) => {
-  const [noLineup, setNoLineup] = useState(false);
+  // const [noLineup, setNoLineup] = useState(false);
   const [players, setPlayers] = useState({});
   const [dirtyPlayers, setDirtyPlayers] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +19,7 @@ const Lineup = (props) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     };
-    if (!noLineup) {
+    if (!props.noLineup) {
       fetch(
         `https://cs411baseball.web.illinois.edu/api/fantasy-team-lineup/${props.teamId}`,
         requestOptions
@@ -41,12 +41,12 @@ const Lineup = (props) => {
           setDirtyPlayers(temp);
           setLoaded(true);
         } else if (response.status === 409) {
-          setNoLineup(true);
+          props.setNoLineup(true);
           setLoaded(true);
         }
       });
     }
-  }, [noLineup, props.teamId]);
+  }, [props, props.noLineup, props.teamId]);
 
   const putLineup = async (event) => {
     event.preventDefault();
@@ -78,10 +78,10 @@ const Lineup = (props) => {
 
   return (
     <>
-      {noLineup ? (
+      {props.noLineup ? (
         <LineupForm
           teamId={props.teamId}
-          setNoLineup={setNoLineup}
+          setNoLineup={props.setNoLineup}
           putLineup={putLineup}
         />
       ) : (

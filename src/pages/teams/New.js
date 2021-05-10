@@ -54,19 +54,24 @@ export const New = (props) => {
       <Breadcrumbs
         path={[{ text: "My Teams", href: "/teams" }, { text: "New Team" }]}
       />
-      <h1>New Team</h1>
-      {badSubmit ? <div>{submitError}</div> : <div />}
-      <form onSubmit={postTeam}>
-        <div>
-          <span>Team Name</span>
-          <input type={"text"} value={name} onChange={handleNameInput} />
-        </div>
-        {submitting ? (
-          <Loading />
-        ) : (
-          <input type={"submit"} value={"Create Team"} className={"button"} />
-        )}
-      </form>
+      <div className={"new-team"}>
+        <h1>Create a Team</h1>
+        <h2>Every great team needs a great name.</h2>
+        {badSubmit ? <div>{submitError}</div> : <div />}
+        <form onSubmit={postTeam} className={"new-team__form"}>
+          <input
+            type={"text"}
+            value={name}
+            onChange={handleNameInput}
+            className={"new-team__input"}
+          />
+          {submitting ? (
+            <Loading />
+          ) : (
+            <input type={"submit"} value={"Create Team"} className={"button"} />
+          )}
+        </form>
+      </div>
     </div>
   );
 };
