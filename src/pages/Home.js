@@ -1,29 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { adjustSeasons } from "./Player";
 import HitterSeasonsChart from "../components/players/HitterSeasonsChart";
 
 const Home = (props) => {
-  const [yelich, setYelich] = useState([]);
-
-  useEffect(() => {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-    fetch(
-      `https://cs411baseball.web.illinois.edu/api/player/yelicch01/stats`,
-      requestOptions
-    ).then(async (response) => {
-      if (response.status === 200) {
-        const data = await response.json();
-        setYelich(adjustSeasons(data.seasons));
-      }
-    });
-  }, []);
+  const yelichStats = [
+    {
+      batting_hr: "4",
+      g: "62",
+      h: "69",
+      rbi: "16",
+      year: "2013",
+    },
+    {
+      batting_hr: "9",
+      g: "144",
+      h: "165",
+      rbi: "54",
+      year: "2014",
+    },
+    {
+      batting_hr: "7",
+      g: "126",
+      h: "143",
+      rbi: "44",
+      year: "2015",
+    },
+    {
+      batting_hr: "21",
+      g: "155",
+      h: "172",
+      rbi: "98",
+      year: "2016",
+    },
+    {
+      batting_hr: "18",
+      g: "156",
+      h: "170",
+      rbi: "81",
+      year: "2017",
+    },
+    {
+      batting_hr: "36",
+      g: "147",
+      h: "187",
+      rbi: "110",
+      year: "2018",
+    },
+    {
+      batting_hr: "44",
+      g: "130",
+      h: "161",
+      rbi: "97",
+      year: "2019",
+    },
+  ];
 
   return (
     <div className={"page"}>
@@ -63,7 +94,7 @@ const Home = (props) => {
           </div>
           <div className={"cell large-7"}>
             <div className={"home__chart"}>
-              <HitterSeasonsChart data={yelich} />
+              <HitterSeasonsChart data={yelichStats} />
             </div>
           </div>
         </div>
