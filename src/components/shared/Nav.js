@@ -2,34 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import SearchForm from "./SearchForm";
-import AuthButton from "./AuthButton";
 import UserActions from "./UserActions";
+import Logo from "../../assets/images/baseball.svg";
 
 function Nav(props) {
   return (
     <div className={"page-wrapper page-wrapper--navbar"}>
       <div className={"page-wrapper__content"}>
-        <div className={"navbar navbar--mobile"}>
+        <div className={"navbar"}>
           <div className={"navbar__group"}>
-            <Link to="/" className={"navbar__title"}>
-              TBB
+            <Link to="/" className={"navbar__title navbar__group"}>
+              <img src={Logo} alt="Logo" className={"navbar__logo"} />
+              <span className={"navbar__logo-text"}>TBB</span>
             </Link>
           </div>
           <div className={"navbar__group"}>
-            <SearchForm />
-          </div>
-          <div className={"navbar__group"}>
-            <AuthButton
-              signedIn={props.signedIn}
-              setSignedIn={props.setSignedIn}
-            />
-          </div>
-        </div>
-        <div className={"navbar navbar--desktop"}>
-          <div className={"navbar__group"}>
-            <Link to="/" className={"navbar__title"}>
-              The Baseball Bunch
-            </Link>
             <SearchForm />
           </div>
           <div className={"navbar__group"}>
