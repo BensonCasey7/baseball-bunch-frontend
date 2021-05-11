@@ -124,7 +124,9 @@ const Prediction = (props) => {
       ) : (
         <>
           <h3>Is this a championship caliber team?</h3>
-          <button onClick={handleClick}>Test your team</button>
+          <button onClick={handleClick} className={"button"}>
+            Test your team
+          </button>
           {prediction ? (
             <>
               <h2>{predictionHeader()}</h2>
