@@ -101,6 +101,7 @@ const Lineup = (props) => {
                         "_",
                         "-"
                       )}`}
+                      key={position}
                     >
                       <LineupPlayer
                         key={position}

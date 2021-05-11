@@ -18,12 +18,12 @@ const Breadcrumbs = (props) => {
     <div className={"breadcrumbs"}>
       {linkedNodes().map((node) => {
         return (
-          <>
+          <span key={node.text}>
             <Link to={node.href} className={"breadcrumbs__item"}>
               {node.text}
             </Link>
             <span className={"breadcrumbs__delimiter"}>/</span>
-          </>
+          </span>
         );
       })}
       {finalNode().text}

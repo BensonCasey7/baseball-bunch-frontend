@@ -3,6 +3,7 @@ import Loading from "../shared/Loading";
 import LineupForm from "./LineupForm";
 import BaseballDiamond from "../../assets/images/baseball-diamond.png";
 import LineupPlayer from "./LineupPlayer";
+import MLMetrics from "./MLMetrics";
 
 const Prediction = (props) => {
   const [prediction, setPrediction] = useState(undefined);
@@ -36,6 +37,9 @@ const Prediction = (props) => {
       return aggregate;
     } else {
       Object.entries(prediction).forEach(([key, value]) => {
+        if (key === "fantasy_team_stats") {
+          return;
+        }
         if (prediction[key]["predicted to be champion?"] === "Yes") {
           aggregate.yes = aggregate.yes.concat(key);
         } else {
@@ -63,28 +67,52 @@ const Prediction = (props) => {
     }
   };
 
+  const toSentence = (words) => {
+    if (words.length === 1) {
+      return words[0];
+    }
+    return (
+      words.slice(0, words.length - 1).join(", ") + " and " + words.slice(-1)
+    );
+  };
+
   const predictionSummary = () => {
     if (!prediction) {
       return "";
     } else {
       const aggregate = predictionAggregate();
-      const yesList =
-        aggregate.yes.slice(0, aggregate.yes.length - 1).join(", ") +
-        " and " +
-        aggregate.yes.slice(-1);
-      const noList =
-        aggregate.no.slice(0, aggregate.no.length - 1).join(", ") +
-        " and " +
-        aggregate.no.slice(-1);
+      const yesList = toSentence(aggregate.yes);
+      const noList = toSentence(aggregate.no);
       switch (predictionAggregate().yes.length) {
         case 0:
-          return `${noList} all predict that this team is not up to the task.`;
+          return (
+            <>
+              Our <b>{noList}</b> models all predict that this team is not up to
+              the task.
+            </>
+          );
         case 1:
-          return `${noList} predict that this team is not ready for a championship. However, according to ${yesList}, this team has a shot.`;
+          return (
+            <>
+              Our <b>{noList}</b> models predict that this team is not ready for
+              a championship. However, according to our <b>{yesList}</b> model,
+              this team has a shot.
+            </>
+          );
         case 2:
-          return `${yesList} predict that this is a championship level team. However, ${noList} does not.`;
+          return (
+            <>
+              Our <b>{yesList}</b> models predict that this is a championship
+              level team. However, our <b>{noList}</b> model does not.
+            </>
+          );
         default:
-          return `${yesList} all predict that this is a championship level team.`;
+          return (
+            <>
+              Our <b>{yesList}</b> models all predict that this is a
+              championship level team.
+            </>
+          );
       }
     }
   };
@@ -100,7 +128,8 @@ const Prediction = (props) => {
           {prediction ? (
             <>
               <h2>{predictionHeader()}</h2>
-              <div>{predictionSummary()}</div>
+              <div className={"prediction__summary"}>{predictionSummary()}</div>
+              <MLMetrics prediction={prediction} />
             </>
           ) : (
             <>

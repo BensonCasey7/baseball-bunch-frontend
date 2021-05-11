@@ -178,3 +178,23 @@
     }
   }
 }
+
+.prediction {
+  &__summary {
+    margin-bottom: $global-margin;
+    text-align: center;
+  }
+
+  &__explanations {
+    display: flex;
+    flex-direction: column;
+    margin-top: $global-margin;
+  }
+
+  &__action {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    align-self: center;
+  }
+}

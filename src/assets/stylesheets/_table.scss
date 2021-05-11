@@ -30,9 +30,17 @@ $table-border: $black solid 1px;
 }
 
 .table-container {
-  overflow: scroll;
+  overflow-x: scroll;
 
   @include breakpoint(large up) {
     overflow: unset;
+  }
+
+  &--always-scroll {
+    max-width: 100%;
+
+    @include breakpoint(large up) {
+      overflow-x: scroll;
+    }
   }
 }
