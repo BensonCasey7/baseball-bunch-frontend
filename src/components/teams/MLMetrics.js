@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import MLExplanation from "./MLExplanation";
+import MLTable from "./MLTable";
+import PredictionBarChart from "./PredictionBarChart";
 
 const MLMetrics = (props) => {
   const [showTable, setShowTable] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
 
-  const methods = [
+  const methodsRows = [
     { ...props.prediction.GaussianNB, ...{ name: "GaussianNB" } },
     { ...props.prediction.KNeighbors, ...{ name: "KNeighbors" } },
     { ...props.prediction.LinearSVC, ...{ name: "LinearSVC" } },
   ];
 
-  const structure = {
+  const methodsStructure = {
     name: "Method",
     "predicted to be champion?": "Champion?",
     accuracy: "Accuracy",
@@ -50,45 +52,13 @@ const MLMetrics = (props) => {
       )}
       {showTable ? (
         <>
-          <div className={"table-container table-container--always-scroll"}>
-            <table className={"table"}>
-              <thead>
-                <tr className={"table__row table__row--head"}>
-                  {Object.values(structure).map((statName) => {
-                    return (
-                      <th key={statName} className={"table__data"}>
-                        {statName}
-                      </th>
-                    );
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {methods.map((method) => {
-                  return (
-                    <tr key={method} className={"table__row"}>
-                      {Object.keys(structure).map((statKey) => {
-                        const key =
-                          !isNaN(method[statKey]) &&
-                          parseFloat(method[statKey]) < 1
-                            ? parseFloat(method[statKey]).toFixed(2)
-                            : method[statKey];
-
-                        return (
-                          <td
-                            key={`${method}-${statKey}`}
-                            className={"table__data"}
-                          >
-                            {key}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div style={{ width: "100%", height: "300px" }}>
+            <PredictionBarChart
+              predictionStats={props.prediction.fantasy_team_stats}
+            />
           </div>
+          <MLTable structure={methodsStructure} rows={methodsRows} />
+
           <div className={"prediction__explanations"}>
             {showExplanation ? (
               <div
