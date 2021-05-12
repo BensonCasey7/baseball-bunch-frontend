@@ -15,39 +15,39 @@ const PredictionBarChart = (props) => {
   const data = [
     {
       name: "AB/G",
-      pv: props.predictionStats.ab_per_game,
+      Expected: props.predictionStats.ab_per_game,
     },
     {
       name: "H/G",
-      pv: props.predictionStats.h_per_game,
+      Expected: props.predictionStats.h_per_game,
     },
     {
       name: "BB/G",
-      pv: props.predictionStats.bb_per_game,
+      Expected: props.predictionStats.bb_per_game,
     },
     {
       name: "2B/G",
-      pv: props.predictionStats.b2_per_game,
+      Expected: props.predictionStats.b2_per_game,
     },
     {
       name: "HR/G",
-      pv: props.predictionStats.hr_per_game,
+      Expected: props.predictionStats.hr_per_game,
     },
     {
       name: "R/G",
-      pv: props.predictionStats.r_per_game,
+      Expected: props.predictionStats.r_per_game,
     },
     {
       name: "SB/G",
-      pv: props.predictionStats.sb_per_game,
+      Expected: props.predictionStats.sb_per_game,
     },
     {
       name: "ER/G",
-      pv: props.predictionStats.er_per_game,
+      Expected: props.predictionStats.er_per_game,
     },
     {
       name: "K/G",
-      pv: props.predictionStats.pitching_so_per_game,
+      Expected: props.predictionStats.pitching_so_per_game,
     },
   ];
 
@@ -68,7 +68,7 @@ const PredictionBarChart = (props) => {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Bar dataKey="pv" fill="#8884d8" />
+        <Bar dataKey="Expected" fill="#8884d8" />
       </BarChart>
     </ResponsiveContainer>
   );
