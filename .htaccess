@@ -4,13 +4,12 @@ PassengerBaseURI "/"
 PassengerPython "/home/cs411baseball/virtualenv/baseball-bunch-backend/3.7/bin/python"
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
 <IfModule mod_rewrite.c>
-
+  RewriteRule ^(api)($|/) - [L]
   RewriteEngine On
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} -df
-  RewriteCond %{REQUEST_FILENAME} -dd
-  RewriteCond %{REQUEST_FILENAME} -dl
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
   RewriteRule . /index.html [L]
-
 </IfModule>
